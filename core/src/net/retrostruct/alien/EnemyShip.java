@@ -30,4 +30,9 @@ public class EnemyShip extends Entity {
 
         Gdx.app.log("ENEMY", "X: " + getX() + ", Y: " + getY());
     }
+
+    @Override
+    public String toString() {
+        return "Enemy Ship";
+    }
 }

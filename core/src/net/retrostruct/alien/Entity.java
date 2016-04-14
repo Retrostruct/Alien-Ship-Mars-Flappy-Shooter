@@ -99,4 +99,9 @@ public class Entity {
 
     // Reset method that should be overrided
     public void reset() { }
+
+    @Override
+    public String toString() {
+        return "Entity";
+    }
 }

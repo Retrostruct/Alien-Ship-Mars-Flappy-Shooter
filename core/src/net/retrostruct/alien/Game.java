@@ -2,6 +2,7 @@ package net.retrostruct.alien;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,16 +22,16 @@ public class Game extends ApplicationAdapter {
     private SpriteBatch spriteBatch; // Sprite batch to draw entities
     private OrthographicCamera camera; // Camera to translate coordinates
     private Viewport viewport; // Game's viewport
-    private Random random;
+    private Random random; // Randomizer
 
     // The game's states
     private enum GameStates {
-        Menu,
-        Playing,
-        Credits
+        Menu, // Restart screen (press space/tap to play)
+        Playing, // Play the game
+        Credits // Roll credits
     }
 
-    private GameStates currentGameState = GameStates.Menu;
+    private GameStates currentGameState = GameStates.Playing; // Set current state to menu
 
     private Color clearColor = Color.WHITE; // Screen clear color
 
@@ -79,7 +80,7 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
-                background.update(delta); // Update scrolling background
+                // background.update(delta); // Update scrolling background
                 player.update(delta); // Update player
 
                 // Update entities
@@ -89,7 +90,7 @@ public class Game extends ApplicationAdapter {
                     // Remove entity if killed
                     if(!entity.isAlive()) {
                         entities.removeValue(entity, true);
-                        Gdx.app.log("ENTITY", "Entity removed!");
+                        Gdx.app.log("ENTITY", entity.toString() + " removed!");
                         continue;
                     }
                 }
@@ -109,7 +110,7 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
-                background.draw(spriteBatch); // Draw scrolling background
+                // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
 
                 // Draw entities
@@ -126,6 +127,10 @@ public class Game extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+        // Allow the game to exit
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+            Gdx.app.exit();
+
         update(Gdx.graphics.getDeltaTime()); // Update
 
         // Clear
