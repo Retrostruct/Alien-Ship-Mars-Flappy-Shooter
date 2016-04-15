@@ -3,6 +3,7 @@ package net.retrostruct.alien;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -47,8 +48,16 @@ public class Entity {
     public Vector2 getVelocity() { return velocity; }
     public void setVelocity(float x, float y) { velocity = new Vector2(x, y); }
 
+    public void setVelocityX(float value) { velocity.x = value; }
+    public void setVelocityY(float value) { velocity.y = value; }
+
+    public void addVelocity(float x, float y) {
+        velocity.x += x;
+        velocity.y += y;
+    }
+
     // Origin
-    public Vector2 getOrigin() { return new Vector2(getWidth() / 2, getHeight() / 2); }
+    public Vector2 getOrigin() { return new Vector2(0, 0); }
 
     // Rotation
     public float getRotation() { return rotation; }
@@ -63,16 +72,23 @@ public class Entity {
 
     // Texture region
     public TextureRegion getTextureRegion() { return textureRegion; }
-    public void setTextureRegion(int x, int y, int width, int height) {
+    public void setTextureRegion(int x, int y) {
         textureRegion = new TextureRegion(spriteSheet, x, y, width, height);
     }
 
     // Alive
     public boolean isAlive() { return alive; }
     public void kill() { alive = false; }
+    public void revive() { alive = true; }
 
     public Rectangle getRectangle() {
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }
+
+    // Collision detection
+    public boolean overlaps(Entity entity) {
+        if(this.equals(entity)) return false;
+        return getRectangle().overlaps(entity.getRectangle());
     }
 
     public Entity(float x, float y) {
@@ -83,7 +99,7 @@ public class Entity {
         setY(y);
     }
 
-    public void update(float delta) {
+    public void update(float delta, Player player) {
         // Move entity
         position.x += velocity.x * delta;
         position.y += velocity.y * delta;
@@ -93,8 +109,14 @@ public class Entity {
         // Draw entity
         spriteBatch.draw(getTextureRegion(), getX(), getY(),
                         getOrigin().x, getOrigin().y,
-                        getWidth(), getHeight(),
+                        width, height,
                         getScale(), getScale(), rotation);
+
+
+    }
+
+    public void drawHitBox(ShapeRenderer shapeRenderer) {
+        shapeRenderer.rect(getX(), getY(), getWidth(), getHeight());
     }
 
     // Reset method that should be overrided
@@ -102,6 +124,6 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "Entity";
+        return this.getClass().getSimpleName();
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -15,11 +16,13 @@ import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 
-    private final boolean mobile = false; // TODO: Set to true on release
-    private final String TITLE = "Alien Shooter"; // Title of window
-    private final float SCALE = 2.0f; // Change the game's scale here
+    public static boolean MOBILE;
+
+    private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
+    private float SCALE; // Change the game's scale here
 
     private SpriteBatch spriteBatch; // Sprite batch to draw entities
+    private ShapeRenderer shapeRenderer;
     private OrthographicCamera camera; // Camera to translate coordinates
     private Viewport viewport; // Game's viewport
     private Random random; // Randomizer
@@ -28,30 +31,33 @@ public class Game extends ApplicationAdapter {
     private enum GameStates {
         Menu, // Restart screen (press space/tap to play)
         Playing, // Play the game
-        Credits // Roll credits
+        Credits, // Roll credits
     }
 
     private GameStates currentGameState = GameStates.Playing; // Set current state to menu
 
-    private Color clearColor = Color.WHITE; // Screen clear color
+    private Color clearColor = Color.BLACK; // Screen clear color
 
     private Player player; // Player
     private ScrollingBackground background; // Scrolling background
 
     // Entity array to hold all objects except the player
-    private Array<Entity> entities = new Array<Entity>();
+    private Array<Entity> entities = new Array();
 	
 	@Override
 	public void create () {
         int width = Gdx.graphics.getWidth(); // Get window width
         int height = Gdx.graphics.getHeight(); // Get window height
 
+        SCALE = height / 32.0f / 8.0f;
+
         Gdx.graphics.setTitle(TITLE); // Set window title
 
 		spriteBatch = new SpriteBatch(); // Create sprite batch
+        shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera(); // Create orthographic camera
         viewport = new FillViewport(width, height, camera); // Create the fill viewport
-        random = new Random(System.currentTimeMillis()); // Create and seed the randomizer
+        random = new Random(System.nanoTime()); // Create and seed the randomizer
 
 		Entity.loadSpriteSheet("sheets/entities.png"); // Set entity sprite sheet
 		Entity.setScale(SCALE); // Set entity scale
@@ -70,6 +76,8 @@ public class Game extends ApplicationAdapter {
         entities.clear(); // Clear entity array
 
         entities.add(new EnemyShip(random));
+
+        for(int i = 0; i < 10; i++) entities.add(new Hamster(random));
     }
 
     private void update(float delta) {
@@ -81,11 +89,15 @@ public class Game extends ApplicationAdapter {
             case Playing:
 
                 // background.update(delta); // Update scrolling background
-                player.update(delta); // Update player
+                player.update(delta, MOBILE, entities); // Update player
 
                 // Update entities
                 for(Entity entity: entities) {
-                    entity.update(delta);
+                    entity.update(delta, player);
+
+                    if(entity = bullet) {
+                        bullet.checkCollision(entities);
+                    }
 
                     // Remove entity if killed
                     if(!entity.isAlive()) {
@@ -93,6 +105,11 @@ public class Game extends ApplicationAdapter {
                         Gdx.app.log("ENTITY", entity.toString() + " removed!");
                         continue;
                     }
+                }
+
+                if(!player.isAlive()) {
+                    reset();
+                    Gdx.app.log("GAME", "Player died!");
                 }
 
                 break;
@@ -141,6 +158,17 @@ public class Game extends ApplicationAdapter {
 		spriteBatch.begin();
         draw();
 		spriteBatch.end();
+
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+
+        for(Entity entity: entities) {
+            entity.drawHitBox(shapeRenderer);
+        }
+
+        player.drawHitBox(shapeRenderer);
+
+        shapeRenderer.end();
 	}
 
     @Override

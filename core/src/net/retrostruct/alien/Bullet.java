@@ -5,17 +5,35 @@ package net.retrostruct.alien;
  */
 public class Bullet extends Entity {
 
-    private float speed = 5.0f;
+    private float speed = 500.0f;
 
-    public Bullet() {
-        super(0.0f, 0.0f);
+    public Bullet(float x, float y, float rotation) {
+        super(x, y);
 
-        setTextureRegion(4 * 32, 0, 32, 32);
-        setVelocity(speed, 0);
+        // Set size
+        setWidth(12);
+        setHeight(4);
+
+        // Set texture region
+        setTextureRegion(138, 14);
+
+        // Initially, set velocity to speed
+        setVelocity((float) Math.cos(rotation) * speed, (float) Math.sin(rotation) * speed);
+
+        // Set rotation
+        setRotation(rotation);
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta, Player player) {
+        super.update(delta, player);
 
+        // Remove if outside screen
+        if(getX() > getWorldWidth() + getWidth()) kill();
+    }
+
+    @Override
+    public String toString() {
+        return Bullet.class.getSimpleName();
     }
 }

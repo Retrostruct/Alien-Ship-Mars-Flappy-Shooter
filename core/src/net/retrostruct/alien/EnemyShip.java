@@ -1,6 +1,5 @@
 package net.retrostruct.alien;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 
 import java.util.Random;
@@ -10,29 +9,41 @@ import java.util.Random;
  */
 public class EnemyShip extends Entity {
 
-    private float speed = 10.0f; // Enemy ship speed
+    private float speed = 150.0f; // Enemy ship speed
+    private float amplitude, frequency;
+    private float yOffset;
 
     public EnemyShip(Random random) {
         super(0.0f, 0.0f);
 
+        // Set size
+        setWidth(32);
+        setHeight(32);
+
         // Randomize position
         setX(getWorldWidth() + getWorldWidth() * random.nextFloat());
-        setY(getWorldHeight() * random.nextFloat());
+        yOffset = (getWorldHeight() - getHeight()) * random.nextFloat();
 
-        setTextureRegion(32 * 1, 0, 32, 32); // Set texture region
-        setVelocity(-speed, 0); // Set initial velocity
+        amplitude = random.nextFloat() * 50 + 50;
+        frequency = random.nextFloat() * 0.01f;
+
+        // Set texture region
+        setTextureRegion(32 * 1, 0); // Set texture region
+
+        // Initially, set velocity to negative speed
+        setVelocity(-speed, 0);
     }
 
     @Override
-    public void update(float delta) {
-        super.update(delta);
-        setY(MathUtils.sin(getX()));
+    public void update(float delta, Player player) {
+        super.update(delta, player);
 
-        Gdx.app.log("ENEMY", "X: " + getX() + ", Y: " + getY());
-    }
+        // If enemy overlaps player, kill the player
+        if(overlaps(player)) player.kill();
 
-    @Override
-    public String toString() {
-        return "Enemy Ship";
+        // Set the y position as a sinus function of the x position
+        setY(MathUtils.sin(getX() * frequency) * amplitude + yOffset);
+
+        if(getX() < 0 - getWidth()) kill();
     }
 }
