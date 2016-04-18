@@ -91,8 +91,10 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
+                gui.gameUpdate();
+
                 // background.update(delta); // Update scrolling background
-                player.update(delta, MOBILE, entities); // Update player
+                player.update(delta, MOBILE, entities, gui); // Update player
 
                 // Update entities
                 for(Entity entity: entities) {
