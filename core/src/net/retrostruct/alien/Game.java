@@ -128,7 +128,7 @@ public class Game extends ApplicationAdapter {
 
                 // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
-                gui.gameDraw(spriteBatch); //Y U NO DRAW????????
+                gui.gameDraw(spriteBatch); //Draw the GUI
 
                 // Draw entities
                 for(Entity entity: entities) {

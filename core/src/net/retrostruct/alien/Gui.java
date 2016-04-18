@@ -16,8 +16,14 @@ public class Gui {
         gameShoot = new Entity(0,0);
         gameJump = new Entity(0,0);
 
-        gameShoot.setTextureRegion(1,1);
-        gameJump.setTextureRegion(0,1);
+        gameShoot.setWidth(32);
+        gameShoot.setHeight(32);
+
+        gameJump.setWidth(32);
+        gameJump.setHeight(32);
+
+        gameShoot.setTextureRegion(1 * 32,1 * 32);
+        gameJump.setTextureRegion(0,1* 32);
     }
 
     public void menuUpdate(){
