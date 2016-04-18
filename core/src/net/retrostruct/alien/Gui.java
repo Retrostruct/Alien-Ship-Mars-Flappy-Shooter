@@ -1,10 +1,8 @@
 package net.retrostruct.alien;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by kasper.esbjornsson on 2016-04-18.
@@ -33,8 +31,8 @@ public class Gui {
         gameJump.setHeight(32);
 
         //Set the correct texture region (multiply by the width and height of the button textures)
-        gameShoot.setTextureRegion(1 * (int)gameShoot.getWidth(),1 * (int)gameShoot.getHeight());
-        gameJump.setTextureRegion(0, 1* (int)gameJump.getHeight());
+        gameShoot.setTextureRegion(1 * gameShoot.getRealWidth(),1 * gameShoot.getRealHeight());
+        gameJump.setTextureRegion(0, 1* gameJump.getRealHeight());
 
         //Position the shoot button in the lower right of the corner
         int lowerRight = (int)gameShoot.getWorldWidth() - (int)gameShoot.getWidth();

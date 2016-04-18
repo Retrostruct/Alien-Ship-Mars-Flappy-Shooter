@@ -76,6 +76,10 @@ public class Entity {
     public float getHeight() { return height * scale; }
     public void setHeight(int value) { height = value; }
 
+    // Size without scaling
+    public int getRealWidth() { return width; }
+    public int getRealHeight() { return height; }
+
     // Texture region
     public TextureRegion getTextureRegion() { return textureRegion; }
     public void setTextureRegion(int x, int y) {
