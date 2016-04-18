@@ -47,16 +47,7 @@ public class Game extends ApplicationAdapter {
 
     Timer enemyTimer = new Timer(1.0f);
 
-    float t = 0.0f;
-    int getNewEnemyCount(float t) {
-        return (int) (t / 100.0f) + 1;
-    }
-
-    void addEnemies(int n) {
-        for(int i = 0; i < n; i++) {
-            entityCounter.addEntity(new EnemyShip(random), entities);
-        }
-    }
+    float time = 0.0f;
 	
 	@Override
 	public void create () {
@@ -64,6 +55,10 @@ public class Game extends ApplicationAdapter {
         int height = Gdx.graphics.getHeight(); // Get window height
 
         SCALE = height / 32.0f / 8.0f;
+
+        Gdx.app.log("GAME", "Scale: " + SCALE);
+        // 1.875 on desktop
+        // 4.21875 on mobile
 
         Gdx.graphics.setTitle(TITLE); // Set window title
 
@@ -90,9 +85,9 @@ public class Game extends ApplicationAdapter {
         player.reset(); // Reset player
         entities.clear(); // Clear entity array
 
-        addEnemies(1);
+        entityCounter.addEnemies(time, random, entities);
 
-        t = 0.0f;
+        time = 0.0f;
 
         for(int i = 0; i < 10; i++) entityCounter.addEntity(new Hamster(random), entities);
     }
@@ -105,8 +100,8 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
-                t += delta;
-                if(enemyTimer.tick(delta)) addEnemies(getNewEnemyCount(t));
+                time += delta;
+                if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
 
                 // background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
@@ -164,7 +159,7 @@ public class Game extends ApplicationAdapter {
             Gdx.app.exit();
 
 
-        update(Gdx.graphics.getDeltaTime()); // Update
+        update(Gdx.graphics.getDeltaTime() * SCALE * 0.75f); // Update
 
         // Clear
 		Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
