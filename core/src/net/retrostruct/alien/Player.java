@@ -1,6 +1,5 @@
 package net.retrostruct.alien;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -11,10 +10,13 @@ import com.badlogic.gdx.utils.Array;
  */
 public class Player extends Entity {
 
-    private int jumpKey, shootKey; // Keyboard controls
+    private static int jumpKey, shootKey; // Keyboard controls
 
-    public void setJumpKey(int value) { jumpKey = value; }
-    public void setShootKey(int value) { shootKey = value; }
+    public static void setJumpKey(int value) { jumpKey = value; }
+    public static void setShootKey(int value) { shootKey = value; }
+
+    public static int getJumpKey() { return jumpKey; }
+    public static int getShootKey() { return shootKey; }
 
     private float gravity = 25.0f;
     private float jumpHeight = 500.0f;
@@ -46,26 +48,11 @@ public class Player extends Entity {
         setTextureRegion(0, 0);
     }
 
-    public void update(float delta, boolean mobile, Array<Entity> entities, Gui gui) {
+    public void update(float delta, boolean mobile, Array<Entity> entities) {
         super.update(delta, this);
 
         // Add gravity to velocity
         addVelocity(0.0f, -gravity);
-
-        // Check input
-        /*
-        This code is now obsolete. Input for jumping is handled by the gui (only works for phones at the time)
-
-        if(mobile) {
-            if(Gdx.input.justTouched()) jump();
-        } else {
-            if(Gdx.input.isKeyJustPressed(jumpKey)) jump();
-            if(Gdx.input.isKeyPressed(shootKey)) shoot(entities);
-        }
-        */
-
-        if(gui.jumpPressed) jump();
-        if(gui.shootPressed) shoot(entities);
 
         // Set rotation
         setRotation(-getVelocity().y * 0.01f - (float) Math.toRadians(30.0));
@@ -99,11 +86,11 @@ public class Player extends Entity {
         revive();
     }
 
-    private void jump() {
+    public void jump() {
         setVelocityY(jumpHeight);
     }
 
-    private void shoot(Array<Entity> entities) {
+    public void shoot(Array<Entity> entities) {
         entities.add(new Bullet(getX(), getY(), (float) Math.toRadians(getRotation())));
     }
 }

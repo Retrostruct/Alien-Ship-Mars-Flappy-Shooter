@@ -1,10 +1,8 @@
 package net.retrostruct.alien;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by kasper.esbjornsson on 2016-04-18.
@@ -52,22 +50,31 @@ public class Gui {
         shootPressed = false;
         jumpPressed = false;
 
-        //Create a rectangle for the input from the player
-        Rectangle inputCollision = new Rectangle(Gdx.input.getX(),Gdx.input.getY() - Entity.getWorldHeight() + gameShoot.getHeight(),10,10);
+        if(Game.MOBILE) {
+            //Create a rectangle for the input from the player
+            Rectangle inputCollision = new Rectangle(Gdx.input.getX(),Gdx.input.getY() - Entity.getWorldHeight() + gameShoot.getHeight(),10,10);
 
-        //Check if shoot button is pressed
-        if(inputCollision.overlaps(gameShoot.getRectangle()) && Gdx.input.justTouched()){
-            shootPressed = true;
+            //Check if shoot button is pressed
+            if(inputCollision.overlaps(gameShoot.getRectangle()) && Gdx.input.justTouched()){
+                shootPressed = true;
+            }
+
+            //Check if jump button is pressed
+            if(inputCollision.overlaps(gameJump.getRectangle()) && Gdx.input.justTouched()){
+                jumpPressed = true;
+            }
+
+            //Move the input collision outside the active game area
+            inputCollision.x = -10;
+            inputCollision.y = -10;
+        } else {
+            if(Gdx.input.isKeyJustPressed(Player.getJumpKey()))
+                jumpPressed = true;
+            if(Gdx.input.isKeyJustPressed(Player.getShootKey()))
+                shootPressed = true;
         }
 
-        //Check if jump button is pressed
-        if(inputCollision.overlaps(gameJump.getRectangle()) && Gdx.input.justTouched()){
-            jumpPressed = true;
-        }
 
-        //Move the input collision outside the active game area
-        inputCollision.x = -10;
-        inputCollision.y = -10;
 
     }
 

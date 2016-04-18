@@ -40,24 +40,15 @@ public class Game extends ApplicationAdapter {
     private Color clearColor = Color.BLACK; // Screen clear color
 
     private Player player; // Player
-    private ScrollingBackground background; // Scrolling background
     private Gui gui;
+    private ScrollingBackground background; // Scrolling background
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
 
     Timer enemyTimer = new Timer(1.0f);
 
-    float t = 0.0f;
-    int getNewEnemyCount(float t) {
-        return (int) (t / 100.0f) + 1;
-    }
-
-    void addEnemies(int n) {
-        for(int i = 0; i < n; i++) {
-            entityCounter.addEntity(new EnemyShip(random), entities);
-        }
-    }
+    float time = 0.0f;
 	
 	@Override
 	public void create () {
@@ -66,9 +57,13 @@ public class Game extends ApplicationAdapter {
 
         SCALE = height / 32.0f / 8.0f;
 
+        Gdx.app.log("GAME", "Scale: " + SCALE);
+        // 1.875 on desktop
+        // 4.21875 on mobile
+
         Gdx.graphics.setTitle(TITLE); // Set window title
 
-		spriteBatch = new SpriteBatch(); // Create sprite batch
+		spriteBatch = new SpriteBatch(); // Create sprite batchprivate
         shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera(); // Create orthographic camera
         viewport = new FillViewport(width, height, camera); // Create the fill viewport
@@ -80,7 +75,6 @@ public class Game extends ApplicationAdapter {
 		Entity.setViewport(viewport); // Update entity viewport
 
         player = new Player(); // Create player
-
         gui = new Gui();
 
         // Create scrolling background
@@ -93,9 +87,9 @@ public class Game extends ApplicationAdapter {
         player.reset(); // Reset player
         entities.clear(); // Clear entity array
 
-        addEnemies(1);
+        entityCounter.addEnemies(time, random, entities);
 
-        t = 0.0f;
+        time = 0.0f;
 
         for(int i = 0; i < 10; i++) entityCounter.addEntity(new Hamster(random), entities);
     }
@@ -108,13 +102,16 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
-                t += delta;
-                if(enemyTimer.tick(delta)) addEnemies(getNewEnemyCount(t));
+                time += delta;
+                if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
+
+                // background.update(delta); // Update scrolling background
+                player.update(delta, MOBILE, entities); // Update player
 
                 gui.gameUpdate();
 
-                // background.update(delta); // Update scrolling background
-                player.update(delta, MOBILE, entities, gui); // Update player
+                if(gui.jumpPressed) player.jump();
+                if(gui.shootPressed) player.shoot(entities);
 
                 // Update entities
                 for(Entity entity: entities) {
@@ -149,12 +146,13 @@ public class Game extends ApplicationAdapter {
 
                 // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
-                gui.gameDraw(spriteBatch); //Draw the GUI
 
                 // Draw entities
                 for(Entity entity: entities) {
                     entity.draw(spriteBatch);
                 }
+
+                gui.gameDraw(spriteBatch);
 
                 break;
             case Credits:
@@ -170,7 +168,7 @@ public class Game extends ApplicationAdapter {
             Gdx.app.exit();
 
 
-        update(Gdx.graphics.getDeltaTime()); // Update
+        update(Gdx.graphics.getDeltaTime() * SCALE * 0.75f); // Update
 
         // Clear
 		Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
