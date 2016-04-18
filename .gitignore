@@ -12,7 +12,9 @@ gradle-app.setting
 
 # Android Studio
 *.iml
-.idea
-#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+#.idea
+.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
+local.properties
+.idea/vcs.xml
