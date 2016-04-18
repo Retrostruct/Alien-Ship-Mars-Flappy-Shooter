@@ -33,8 +33,8 @@ public class Gui {
         gameJump.setHeight(32);
 
         //Set the correct texture region (multiply by the width and height of the button textures)
-        gameShoot.setTextureRegion(1 * (int)gameShoot.getWidth(),1 * (int)gameShoot.getHeight());
-        gameJump.setTextureRegion(0, 1* (int)gameJump.getHeight());
+        gameShoot.setTextureRegion(1 * 32,1 * 32);
+        gameJump.setTextureRegion(0, 1 * 32);
 
         //Position the shoot button in the lower right of the corner
         int lowerRight = (int)gameShoot.getWorldWidth() - (int)gameShoot.getWidth();
