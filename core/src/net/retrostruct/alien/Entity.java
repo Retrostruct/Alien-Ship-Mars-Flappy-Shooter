@@ -13,6 +13,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class Entity {
 
+    enum Types {
+        Bullet,
+        EnemyShip,
+
+    }
+
     private static Texture spriteSheet; // Entity sprite sheet
     private static Viewport viewport; // Game's viewport
     private static float scale; // Game's scale
@@ -111,12 +117,11 @@ public class Entity {
                         getOrigin().x, getOrigin().y,
                         width, height,
                         getScale(), getScale(), rotation);
-
-
     }
 
     public void drawHitBox(ShapeRenderer shapeRenderer) {
-        shapeRenderer.rect(getX(), getY(), getWidth(), getHeight());
+        Rectangle hitBox = getRectangle();
+        shapeRenderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
     // Reset method that should be overrided

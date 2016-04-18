@@ -3,6 +3,7 @@ package net.retrostruct.alien;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -23,6 +24,12 @@ public class Player extends Entity {
     // Score methods
     public void addScore() { score++; }
     public void addScore(int i) { score += i; }
+
+    public Rectangle getRectangle() {
+        return new Rectangle(getX() + getWidth() / 4,
+                getY() + getHeight() / 4,
+                getWidth() / 2, getHeight() / 2);
+    }
 
     public Player() {
         super(0.0f, 0.0f);

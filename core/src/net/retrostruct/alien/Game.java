@@ -25,7 +25,8 @@ public class Game extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
     private OrthographicCamera camera; // Camera to translate coordinates
     private Viewport viewport; // Game's viewport
-    private Random random; // Randomizer
+    private Random random;
+    private EntityCounter entityCounter;
 
     // The game's states
     private enum GameStates {
@@ -43,6 +44,19 @@ public class Game extends ApplicationAdapter {
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
+
+    Timer enemyTimer = new Timer(1.0f);
+
+    float t = 0.0f;
+    int getNewEnemyCount(float t) {
+        return (int) (t / 100.0f) + 1;
+    }
+
+    void addEnemies(int n) {
+        for(int i = 0; i < n; i++) {
+            entityCounter.addEntity(new EnemyShip(random), entities);
+        }
+    }
 	
 	@Override
 	public void create () {
@@ -58,6 +72,7 @@ public class Game extends ApplicationAdapter {
         camera = new OrthographicCamera(); // Create orthographic camera
         viewport = new FillViewport(width, height, camera); // Create the fill viewport
         random = new Random(System.nanoTime()); // Create and seed the randomizer
+        entityCounter = new EntityCounter(); // Counts entity types
 
 		Entity.loadSpriteSheet("sheets/entities.png"); // Set entity sprite sheet
 		Entity.setScale(SCALE); // Set entity scale
@@ -75,9 +90,11 @@ public class Game extends ApplicationAdapter {
         player.reset(); // Reset player
         entities.clear(); // Clear entity array
 
-        entities.add(new EnemyShip(random));
+        addEnemies(1);
 
-        for(int i = 0; i < 10; i++) entities.add(new Hamster(random));
+        t = 0.0f;
+
+        for(int i = 0; i < 10; i++) entityCounter.addEntity(new Hamster(random), entities);
     }
 
     private void update(float delta) {
@@ -88,6 +105,9 @@ public class Game extends ApplicationAdapter {
                 break;
             case Playing:
 
+                t += delta;
+                if(enemyTimer.tick(delta)) addEnemies(getNewEnemyCount(t));
+
                 // background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
 
@@ -95,14 +115,9 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.update(delta, player);
 
-                    if(entity = bullet) {
-                        bullet.checkCollision(entities);
-                    }
-
                     // Remove entity if killed
                     if(!entity.isAlive()) {
-                        entities.removeValue(entity, true);
-                        Gdx.app.log("ENTITY", entity.toString() + " removed!");
+                        entityCounter.removeEntity(entity, entities);
                         continue;
                     }
                 }
@@ -114,7 +129,7 @@ public class Game extends ApplicationAdapter {
 
                 break;
             case Credits:
-
+                // TODO: Roll credits
                 break;
         }
     }
@@ -147,6 +162,7 @@ public class Game extends ApplicationAdapter {
         // Allow the game to exit
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
+
 
         update(Gdx.graphics.getDeltaTime()); // Update
 
