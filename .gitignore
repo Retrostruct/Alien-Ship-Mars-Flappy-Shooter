@@ -10,7 +10,9 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-# Xml-files that are ignored cause they add problems rather than help
-*.xml
+# Android Studio
 *.iml
-local.properties
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+build/

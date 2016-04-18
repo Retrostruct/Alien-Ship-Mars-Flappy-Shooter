@@ -46,19 +46,26 @@ public class Player extends Entity {
         setTextureRegion(0, 0);
     }
 
-    public void update(float delta, boolean mobile, Array<Entity> entities) {
+    public void update(float delta, boolean mobile, Array<Entity> entities, Gui gui) {
         super.update(delta, this);
 
         // Add gravity to velocity
         addVelocity(0.0f, -gravity);
 
         // Check input
+        /*
+        This code is now obsolete. Input for jumping is handled by the gui (only works for phones at the time)
+
         if(mobile) {
             if(Gdx.input.justTouched()) jump();
         } else {
             if(Gdx.input.isKeyJustPressed(jumpKey)) jump();
             if(Gdx.input.isKeyPressed(shootKey)) shoot(entities);
         }
+        */
+
+        if(gui.jumpPressed) jump();
+        if(gui.shootPressed) shoot(entities);
 
         // Set rotation
         setRotation(-getVelocity().y * 0.01f - (float) Math.toRadians(30.0));

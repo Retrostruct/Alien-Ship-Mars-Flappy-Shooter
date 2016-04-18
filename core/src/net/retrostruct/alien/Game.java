@@ -41,6 +41,7 @@ public class Game extends ApplicationAdapter {
 
     private Player player; // Player
     private ScrollingBackground background; // Scrolling background
+    private Gui gui;
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
@@ -75,6 +76,8 @@ public class Game extends ApplicationAdapter {
 
         player = new Player(); // Create player
 
+        gui = new Gui();
+
         // Create scrolling background
         // background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
 
@@ -103,8 +106,10 @@ public class Game extends ApplicationAdapter {
                 time += delta;
                 if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
 
+                gui.gameUpdate();
+
                 // background.update(delta); // Update scrolling background
-                player.update(delta, MOBILE, entities); // Update player
+                player.update(delta, MOBILE, entities, gui); // Update player
 
                 // Update entities
                 for(Entity entity: entities) {
@@ -139,6 +144,7 @@ public class Game extends ApplicationAdapter {
 
                 // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
+                gui.gameDraw(spriteBatch); //Draw the GUI
 
                 // Draw entities
                 for(Entity entity: entities) {
