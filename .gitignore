@@ -9,3 +9,8 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+# Xml-files that are ignored cause they add problems rather than help
+*.xml
+*.iml
+local.properties
