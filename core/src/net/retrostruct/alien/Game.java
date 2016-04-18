@@ -40,6 +40,7 @@ public class Game extends ApplicationAdapter {
 
     private Player player; // Player
     private ScrollingBackground background; // Scrolling background
+    private Gui gui;
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
@@ -64,6 +65,8 @@ public class Game extends ApplicationAdapter {
 		Entity.setViewport(viewport); // Update entity viewport
 
         player = new Player(); // Create player
+
+        gui = new Gui();
 
         // Create scrolling background
         // background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
@@ -125,6 +128,7 @@ public class Game extends ApplicationAdapter {
 
                 // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
+                gui.gameDraw(spriteBatch); //Y U NO DRAW????????
 
                 // Draw entities
                 for(Entity entity: entities) {
