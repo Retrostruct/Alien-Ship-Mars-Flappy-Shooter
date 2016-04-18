@@ -95,10 +95,6 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.update(delta, player);
 
-                    if(entity = bullet) {
-                        bullet.checkCollision(entities);
-                    }
-
                     // Remove entity if killed
                     if(!entity.isAlive()) {
                         entities.removeValue(entity, true);
