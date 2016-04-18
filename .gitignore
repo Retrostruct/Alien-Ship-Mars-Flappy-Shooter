@@ -12,4 +12,5 @@ gradle-app.setting
 
 # Xml-files that are ignored cause they add problems rather than help
 *.xml
+*.iml
 local.properties
