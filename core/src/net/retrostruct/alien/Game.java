@@ -66,6 +66,8 @@ public class Game extends ApplicationAdapter {
 		spriteBatch = new SpriteBatch(); // Create sprite batchprivate
         shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera(); // Create orthographic camera
+        camera.setToOrtho(false, width, height);
+        camera.update();
         viewport = new FillViewport(width, height, camera); // Create the fill viewport
         random = new Random(System.nanoTime()); // Create and seed the randomizer
         entityCounter = new EntityCounter(); // Counts entity types
@@ -108,7 +110,7 @@ public class Game extends ApplicationAdapter {
                 // background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
 
-                gui.gameUpdate();
+                gui.gameUpdate(camera, delta);
 
                 if(gui.jumpPressed) player.jump();
                 if(gui.shootPressed) player.shoot(entities);
@@ -168,11 +170,12 @@ public class Game extends ApplicationAdapter {
             Gdx.app.exit();
 
 
+        camera.update();
         update(Gdx.graphics.getDeltaTime() * SCALE * 0.75f); // Update
 
         // Clear
 		Gdx.gl.glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Draw
 		spriteBatch.begin();
@@ -187,6 +190,8 @@ public class Game extends ApplicationAdapter {
         }
 
         player.drawHitBox(shapeRenderer);
+
+        gui.drawButtonHitboxes(shapeRenderer);
 
         shapeRenderer.end();
 	}

@@ -27,6 +27,18 @@ public class Entity {
     private int width, height; // Size of entity
     private float rotation = 0.0f; // Rotation (initially 0)
     private TextureRegion textureRegion; // Texture region of entity
+    private Rectangle hitbox = null;
+
+    public void setHitbox(int x, int y, int w, int h) {
+        hitbox = new Rectangle(x, y, w, h);
+    }
+
+    public Rectangle getHitbox() {
+        if(hitbox == null) return getRectangle();
+
+        return new Rectangle(getX() + hitbox.x, getY() + hitbox.y,
+                hitbox.width * scale, hitbox.height * scale);
+    }
 
     private boolean alive = true; // Is the entity alive
 
@@ -124,7 +136,7 @@ public class Entity {
     }
 
     public void drawHitBox(ShapeRenderer shapeRenderer) {
-        Rectangle hitBox = getRectangle();
+        Rectangle hitBox = getHitbox();
         shapeRenderer.rect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 

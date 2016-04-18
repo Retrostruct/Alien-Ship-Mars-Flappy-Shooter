@@ -1,8 +1,11 @@
 package net.retrostruct.alien;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by kasper.esbjornsson on 2016-04-18.
@@ -30,43 +33,60 @@ public class Gui {
         gameJump.setWidth(32);
         gameJump.setHeight(32);
 
+        gameJump.setHitbox(0, 0, 100, 100);
+        gameShoot.setHitbox(-100 - 30, 0, 100, 100);
+
         //Set the correct texture region (multiply by the width and height of the button textures)
-        gameShoot.setTextureRegion(1 * gameShoot.getRealWidth(),1 * gameShoot.getRealHeight());
+        gameShoot.setTextureRegion(1 * 32, 1 * gameShoot.getRealHeight());
         gameJump.setTextureRegion(0, 1* gameJump.getRealHeight());
 
         //Position the shoot button in the lower right of the corner
-        int lowerRight = (int)gameShoot.getWorldWidth() - (int)gameShoot.getWidth();
+        float lowerRight = gameShoot.getWorldWidth() - gameShoot.getWidth();
         gameShoot.setX(lowerRight);
     }
 
     public void menuUpdate(){
 
     }
+    Rectangle input = new Rectangle(0, 0, 0, 0);
+
+
+    float jumpCoolDown = 0.1f;
+    float jumpTimer = 0;
+    float shootCoolDown = 0.1f;
+    float shootTimer = 0;
 
     //Updates the game gui (should only be run if the game state is equal to "playing"
-    public void gameUpdate(){
+    public void gameUpdate(Camera camera, float delta){
 
         //Set the buttons to be not pressed by standard
         shootPressed = false;
         jumpPressed = false;
 
+        shootTimer += delta;
+        jumpTimer += delta;
+
         if(Game.MOBILE) {
-            //Create a rectangle for the input from the player
-            Rectangle inputCollision = new Rectangle(Gdx.input.getX(),Gdx.input.getY() - Entity.getWorldHeight() + gameShoot.getHeight(),10,10);
+            for(int i = 0; i < 10; i++) {
+                //Create a rectangle for the input from the player
+                Vector3 mousePosition = new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+                camera.unproject(mousePosition);
+                input = new Rectangle(mousePosition.x, mousePosition.y, 1, 1);
 
-            //Check if shoot button is pressed
-            if(inputCollision.overlaps(gameShoot.getRectangle()) && Gdx.input.justTouched()){
-                shootPressed = true;
+
+                //Check if shoot button is pressed
+                if (input.overlaps(gameShoot.getHitbox()) && Gdx.input.isTouched(i) && shootTimer > shootCoolDown) {
+                    shootPressed = true;
+                    shootTimer = 0;
+                }
+
+                //Check if jump button is pressed
+                if (input.overlaps(gameJump.getHitbox()) && Gdx.input.isTouched(i) && jumpTimer > jumpCoolDown) {
+                    jumpPressed = true;
+                    jumpTimer = 0;
+                }
             }
 
-            //Check if jump button is pressed
-            if(inputCollision.overlaps(gameJump.getRectangle()) && Gdx.input.justTouched()){
-                jumpPressed = true;
-            }
-
-            //Move the input collision outside the active game area
-            inputCollision.x = -10;
-            inputCollision.y = -10;
         } else {
             if(Gdx.input.isKeyJustPressed(Player.getJumpKey()))
                 jumpPressed = true;
@@ -90,6 +110,13 @@ public class Gui {
     public void gameDraw(SpriteBatch spriteBatch){
         gameShoot.draw(spriteBatch);
         gameJump.draw(spriteBatch);
+    }
+
+    public void drawButtonHitboxes(ShapeRenderer shapeRenderer) {
+        gameShoot.drawHitBox(shapeRenderer);
+        gameJump.drawHitBox(shapeRenderer);
+        shapeRenderer.rect(input.x, input.y,
+                input.width, input.height);
     }
 
 }
