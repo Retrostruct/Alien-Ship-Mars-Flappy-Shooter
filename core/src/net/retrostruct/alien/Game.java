@@ -40,6 +40,7 @@ public class Game extends ApplicationAdapter {
     private Color clearColor = Color.BLACK; // Screen clear color
 
     private Player player; // Player
+    private Gui gui;
     private ScrollingBackground background; // Scrolling background
 
     // Entity array to hold all objects except the player
@@ -62,7 +63,7 @@ public class Game extends ApplicationAdapter {
 
         Gdx.graphics.setTitle(TITLE); // Set window title
 
-		spriteBatch = new SpriteBatch(); // Create sprite batch
+		spriteBatch = new SpriteBatch(); // Create sprite batchprivate
         shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera(); // Create orthographic camera
         viewport = new FillViewport(width, height, camera); // Create the fill viewport
@@ -74,6 +75,7 @@ public class Game extends ApplicationAdapter {
 		Entity.setViewport(viewport); // Update entity viewport
 
         player = new Player(); // Create player
+        gui = new Gui();
 
         // Create scrolling background
         // background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
@@ -105,6 +107,11 @@ public class Game extends ApplicationAdapter {
 
                 // background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
+
+                gui.gameUpdate();
+
+                if(gui.jumpPressed) player.jump();
+                if(gui.shootPressed) player.shoot(entities);
 
                 // Update entities
                 for(Entity entity: entities) {
@@ -144,6 +151,8 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.draw(spriteBatch);
                 }
+
+                gui.gameDraw(spriteBatch);
 
                 break;
             case Credits:
