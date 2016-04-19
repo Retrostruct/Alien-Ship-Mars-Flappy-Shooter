@@ -60,9 +60,6 @@ public class Player extends Entity {
         if(getY() > getWorldHeight() - getHeight()) setVelocityY(0.0f);
         setY(MathUtils.clamp(getY(), -getHeight(), getWorldHeight() - getHeight()));
 
-        // TEST
-        if(getY() < 0) jump();
-
         if(getY() < - getHeight()) kill();
     }
 

@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fcec738-41ec-4a8c-80ee-6ea187cdc7ea" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" />
     </list>
     <ignored path="Alien-Ship-Mars-Flappy-Shooter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bullet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Bullet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52287585">
-              <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -92,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.4117647">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -2441,7 +2440,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" />
         <option value="$PROJECT_DIR$/android/src/net/retrostruct/alien/AndroidLauncher.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -2450,6 +2448,7 @@
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java" />
+        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" />
       </list>
     </option>
   </component>
@@ -2865,10 +2864,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding>
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -2979,14 +2978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/assets/sheets/entities.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -3005,10 +2996,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           <folding>
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1461057062686" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1461057165996" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -3040,16 +3031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3060,8 +3041,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52287585">
-          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4117647">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
