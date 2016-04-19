@@ -101,10 +101,18 @@ public class Entity {
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
     }
 
+    public static Rectangle getWorldRectangle() {
+        return new Rectangle(0, 0, getWorldWidth(), getWorldHeight());
+    }
+
     // Collision detection
     public boolean overlaps(Entity entity) {
         if(this.equals(entity)) return false;
         return getRectangle().overlaps(entity.getRectangle());
+    }
+
+    public boolean isOnScreen() {
+        return getHitbox().overlaps(getWorldRectangle());
     }
 
     public Entity(float x, float y) {
