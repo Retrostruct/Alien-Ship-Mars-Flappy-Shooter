@@ -90,7 +90,7 @@ public class Player extends Entity {
         setVelocityY(jumpHeight);
     }
 
-    public void shoot(Array<Entity> entities) {
-        entities.add(new Bullet(getX(), getY(), (float) Math.toRadians(getRotation())));
+    public void shoot(Array<Bullet> bullets) {
+        bullets.add(new Bullet(getX(), getY(), (float) Math.toRadians(getRotation())));
     }
 }

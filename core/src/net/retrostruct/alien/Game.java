@@ -46,6 +46,8 @@ public class Game extends ApplicationAdapter {
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
 
+    private Array<Bullet> bullets = new Array();
+
     Timer enemyTimer = new Timer(1.0f);
 
     float time = 0.0f;
@@ -113,17 +115,27 @@ public class Game extends ApplicationAdapter {
                 gui.gameUpdate(camera, delta);
 
                 if(gui.jumpPressed) player.jump();
-                if(gui.shootPressed) player.shoot(entities);
+                if(gui.shootPressed) player.shoot(bullets);
 
                 // Update entities
                 for(Entity entity: entities) {
                     entity.update(delta, player);
+
+                    if(entity instanceof EnemyShip){
+                        for(Bullet bullet: bullets){
+                            if(bullet.overlaps(entity))
+                                entity.kill();
+                        }
+                    }
 
                     // Remove entity if killed
                     if(!entity.isAlive()) {
                         entityCounter.removeEntity(entity, entities);
                         continue;
                     }
+                }
+                for(Bullet bullet: bullets){
+                    bullet.update(delta, player);
                 }
 
                 if(!player.isAlive()) {
@@ -152,6 +164,9 @@ public class Game extends ApplicationAdapter {
                 // Draw entities
                 for(Entity entity: entities) {
                     entity.draw(spriteBatch);
+                }
+                for(Bullet bullet: bullets){
+                    bullet.draw(spriteBatch);
                 }
 
                 gui.gameDraw(spriteBatch);
