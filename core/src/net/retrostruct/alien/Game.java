@@ -201,6 +201,10 @@ public class Game extends ApplicationAdapter {
         draw();
 		spriteBatch.end();
 
+        renderShapes();
+	}
+
+    private void renderShapes() {
         shapeRenderer.setColor(Color.RED);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
@@ -217,7 +221,7 @@ public class Game extends ApplicationAdapter {
         gui.drawButtonHitboxes(shapeRenderer);
 
         shapeRenderer.end();
-	}
+    }
 
     @Override
     public void resize(int width, int height) {

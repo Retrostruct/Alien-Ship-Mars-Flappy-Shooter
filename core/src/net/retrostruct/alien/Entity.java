@@ -13,12 +13,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class Entity {
 
-    enum Types {
-        Bullet,
-        EnemyShip,
-
-    }
-
     private static Texture spriteSheet; // Entity sprite sheet
     private static Viewport viewport; // Game's viewport
     private static float scale; // Game's scale
