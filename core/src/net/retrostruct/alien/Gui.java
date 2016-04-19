@@ -34,7 +34,7 @@ public class Gui {
         gameJump.setHeight(32);
 
         gameJump.setHitbox(0, 0, 100, 100);
-        gameShoot.setHitbox(-100 - 30, 0, 100, 100);
+        gameShoot.setHitbox(-(int)(100 * gameShoot.getScale() - gameShoot.getWidth()), 0, 100, 100);
 
         //Set the correct texture region (multiply by the width and height of the button textures)
         gameShoot.setTextureRegion(1 * 32,1 * 32);
@@ -115,8 +115,6 @@ public class Gui {
     public void drawButtonHitboxes(ShapeRenderer shapeRenderer) {
         gameShoot.drawHitBox(shapeRenderer);
         gameJump.drawHitBox(shapeRenderer);
-        shapeRenderer.rect(input.x, input.y,
-                input.width, input.height);
     }
 
 }

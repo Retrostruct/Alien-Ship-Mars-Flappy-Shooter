@@ -17,6 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
+    public static boolean LOGGING = true;
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
