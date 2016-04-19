@@ -14,6 +14,9 @@ public class Bullet extends Entity {
         setWidth(12);
         setHeight(4);
 
+        // Bigger hitbox to make shooting enemies easier
+        setHitbox(-12, -4, 24, 8);
+
         // Set texture region
         setTextureRegion(138, 14);
 
