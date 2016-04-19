@@ -40,12 +40,13 @@ public class Game extends ApplicationAdapter {
     private Color clearColor = Color.BLACK; // Screen clear color
 
     private Player player; // Player
-    private Gui gui;
+    private Gui gui; //Game gui
     private ScrollingBackground background; // Scrolling background
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
 
+    //Bullet array to hold all bullets (allows for iterating through entities to check collision)
     private Array<Bullet> bullets = new Array();
 
     Timer enemyTimer = new Timer(1.0f);
@@ -121,7 +122,8 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.update(delta, player);
 
-                    if(entity instanceof EnemyShip){
+                    if(entity instanceof EnemyShip){ //Check if entity is enemy ship (no unnecesary bullet iterating)
+                        //Check collision for all bullets against all enemy ships
                         for(Bullet bullet: bullets){
                             if(bullet.overlaps(entity))
                                 entity.kill();
@@ -134,6 +136,7 @@ public class Game extends ApplicationAdapter {
                         continue;
                     }
                 }
+                //Update bullets
                 for(Bullet bullet: bullets){
                     bullet.update(delta, player);
                 }
