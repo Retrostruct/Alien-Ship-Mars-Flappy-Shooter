@@ -29,6 +29,8 @@ public class Game extends ApplicationAdapter {
     private Random random;
     private EntityCounter entityCounter;
 
+    private AudioHandler audioHandler;
+
     // The game's states
     private enum GameStates {
         Menu, // Restart screen (press space/tap to play)
@@ -83,6 +85,8 @@ public class Game extends ApplicationAdapter {
         player = new Player(); // Create player
         gui = new Gui();
 
+        audioHandler = new AudioHandler();
+        audioHandler.playMusic();
         // Create scrolling background
         // background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
 
@@ -116,8 +120,14 @@ public class Game extends ApplicationAdapter {
 
                 gui.gameUpdate(camera, delta);
 
-                if(gui.jumpPressed) player.jump();
-                if(gui.shootPressed) player.shoot(bullets);
+                if(gui.jumpPressed) {
+                    player.jump();
+                    audioHandler.playSound("jump");
+                }
+                if(gui.shootPressed) {
+                    player.shoot(bullets);
+                    audioHandler.playSound("shoot");
+                }
 
                 // Update entities
                 for(Entity entity: entities) {
@@ -126,8 +136,10 @@ public class Game extends ApplicationAdapter {
                     if(entity instanceof EnemyShip){ //Check if entity is enemy ship (no unnecesary bullet iterating)
                         //Check collision for all bullets against all enemy ships
                         for(Bullet bullet: bullets){
-                            if(bullet.overlaps(entity))
+                            if(bullet.overlaps(entity)) {
                                 entity.kill();
+                                audioHandler.playSound("explosion");
+                            }
                         }
                     }
 
