@@ -33,9 +33,11 @@ public class Gui {
         gameJump.setWidth(32);
         gameJump.setHeight(32);
 
-        //Set buttons hitboxes
-        gameJump.setHitbox(-(int)gameJump.getWidth(), 0, 100, 100);
-        gameShoot.setHitbox(-(int)(100 * gameShoot.getScale() - gameShoot.getWidth() * 2), 0, 100, 100);
+        gameShoot.setLocalScale(2.0f);
+        gameJump.setLocalScale(2.0f);
+
+        gameJump.setHitbox(-(int)gameJump.getWidth(), 0, 64 ,64);
+        gameShoot.setHitbox(0, 0, 64 ,64);
 
         //Set the correct texture region (multiply by the width and height of the button textures)
         gameShoot.setTextureRegion(1 * 32,1 * 32);

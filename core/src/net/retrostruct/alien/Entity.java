@@ -15,7 +15,9 @@ public class Entity {
 
     private static Texture spriteSheet; // Entity sprite sheet
     private static Viewport viewport; // Game's viewport
-    private static float scale; // Game's scale
+    private static float gameScale; // Game's gameScale
+
+    private float localScale = 1.0f; // Entity's local scale
 
     private Vector2 position, velocity, origin; // Position, velocity and origin
     private int width, height; // Size of entity
@@ -31,13 +33,17 @@ public class Entity {
         if(hitbox == null) return getRectangle();
 
         return new Rectangle(getX() + hitbox.x, getY() + hitbox.y,
-                hitbox.width * scale, hitbox.height * scale);
+                hitbox.width * gameScale * localScale, hitbox.height * gameScale * localScale);
     }
 
     private boolean alive = true; // Is the entity alive
 
     // Load sprite sheet
     public static void loadSpriteSheet(String path) { spriteSheet = new Texture(path); }
+
+    // Local scale
+    public float getLocalScale() { return localScale; }
+    public void setLocalScale(float value) { localScale = value; }
 
     // Viewport
     public static float getWorldWidth() { return viewport.getWorldWidth(); }
@@ -46,8 +52,8 @@ public class Entity {
     public static void setViewport(Viewport value) { viewport = value; }
 
     // Scale
-    public float getScale() { return scale; }
-    public static void setScale(float value) { scale = value; }
+    public float getScale() { return gameScale; }
+    public static void setGameScale(float value) { gameScale = value; }
 
     // Position
     public float getX() { return position.x; }
@@ -76,10 +82,10 @@ public class Entity {
     public void setRotation(float value) { rotation = value; }
 
     // Size
-    public float getWidth() { return width * scale; }
+    public float getWidth() { return width * gameScale * localScale; }
     public void setWidth(int value) { width = value; }
 
-    public float getHeight() { return height * scale; }
+    public float getHeight() { return height * gameScale * localScale; }
     public void setHeight(int value) { height = value; }
 
     // Size without scaling
@@ -134,7 +140,7 @@ public class Entity {
         spriteBatch.draw(getTextureRegion(), getX(), getY(),
                         getOrigin().x, getOrigin().y,
                         width, height,
-                        getScale(), getScale(), rotation);
+                        gameScale * localScale, gameScale * localScale, rotation);
     }
 
     public void drawHitBox(ShapeRenderer shapeRenderer) {

@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean LOGGING = true;
+    public static boolean RELEASE = false;
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -77,7 +77,7 @@ public class Game extends ApplicationAdapter {
         entityCounter = new EntityCounter(); // Counts entity types
 
 		Entity.loadSpriteSheet("sheets/entities.png"); // Set entity sprite sheet
-		Entity.setScale(SCALE); // Set entity scale
+		Entity.setGameScale(SCALE); // Set entity scale
 		Entity.setViewport(viewport); // Update entity viewport
 
         player = new Player(); // Create player
@@ -185,8 +185,10 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void render () {
         // Allow the game to exit
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
-            Gdx.app.exit();
+        if(!RELEASE) {
+            if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+                Gdx.app.exit();
+        }
 
 
         camera.update();
@@ -201,7 +203,7 @@ public class Game extends ApplicationAdapter {
         draw();
 		spriteBatch.end();
 
-        renderShapes();
+        if(!RELEASE) renderShapes();
 	}
 
     private void renderShapes() {
