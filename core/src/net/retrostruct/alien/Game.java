@@ -41,11 +41,14 @@ public class Game extends ApplicationAdapter {
     private Color clearColor = Color.BLACK; // Screen clear color
 
     private Player player; // Player
-    private Gui gui;
+    private Gui gui; //Game gui
     private ScrollingBackground background; // Scrolling background
 
     // Entity array to hold all objects except the player
     private Array<Entity> entities = new Array();
+
+    //Bullet array to hold all bullets (allows for iterating through entities to check collision)
+    private Array<Bullet> bullets = new Array();
 
     Timer enemyTimer = new Timer(1.0f);
 
@@ -114,17 +117,29 @@ public class Game extends ApplicationAdapter {
                 gui.gameUpdate(camera, delta);
 
                 if(gui.jumpPressed) player.jump();
-                if(gui.shootPressed) player.shoot(entities);
+                if(gui.shootPressed) player.shoot(bullets);
 
                 // Update entities
                 for(Entity entity: entities) {
                     entity.update(delta, player);
+
+                    if(entity instanceof EnemyShip){ //Check if entity is enemy ship (no unnecesary bullet iterating)
+                        //Check collision for all bullets against all enemy ships
+                        for(Bullet bullet: bullets){
+                            if(bullet.overlaps(entity))
+                                entity.kill();
+                        }
+                    }
 
                     // Remove entity if killed
                     if(!entity.isAlive()) {
                         entityCounter.removeEntity(entity, entities);
                         continue;
                     }
+                }
+                //Update bullets
+                for(Bullet bullet: bullets){
+                    bullet.update(delta, player);
                 }
 
                 if(!player.isAlive()) {
@@ -153,6 +168,9 @@ public class Game extends ApplicationAdapter {
                 // Draw entities
                 for(Entity entity: entities) {
                     entity.draw(spriteBatch);
+                }
+                for(Bullet bullet: bullets){
+                    bullet.draw(spriteBatch);
                 }
 
                 gui.gameDraw(spriteBatch);
