@@ -208,6 +208,10 @@ public class Game extends ApplicationAdapter {
             entity.drawHitBox(shapeRenderer);
         }
 
+        for(Bullet bullet: bullets) {
+            bullet.drawHitBox(shapeRenderer);
+        }
+
         player.drawHitBox(shapeRenderer);
 
         gui.drawButtonHitboxes(shapeRenderer);
