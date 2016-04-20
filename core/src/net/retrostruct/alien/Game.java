@@ -32,7 +32,7 @@ public class Game extends ApplicationAdapter {
     private AudioHandler audioHandler;
 
     // The game's states
-    private enum GameStates {
+    public static enum GameStates {
         Menu, // Restart screen (press space/tap to play)
         Infinite, // Infinite mode
         Story, // Story mode
@@ -111,6 +111,9 @@ public class Game extends ApplicationAdapter {
         // Switch the current game state
         switch(currentGameState) {
             case Menu:
+
+                // Set game state to next game state
+                currentGameState = gui.getNextState();
 
                 break;
             case Infinite:

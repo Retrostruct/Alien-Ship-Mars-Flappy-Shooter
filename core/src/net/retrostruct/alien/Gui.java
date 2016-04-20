@@ -52,6 +52,11 @@ public class Gui {
         gameShoot.setX(lowerRight);
     }
 
+    public Game.GameStates getNextState() {
+        // TODO: Check witch next state is
+        return Game.GameStates.Menu;
+    }
+
     public void menuUpdate(){
 
     }
