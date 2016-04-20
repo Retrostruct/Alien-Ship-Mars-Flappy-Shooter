@@ -36,20 +36,28 @@ public class Gui {
         gameShoot.setLocalScale(2.0f);
         gameJump.setLocalScale(2.0f);
 
-        gameJump.setHitbox(-(int)gameJump.getWidth(), 0, 64 ,64);
-        gameShoot.setHitbox(0, 0, 64 ,64);
+        int w = (int) gameJump.getWidth();
+        int h = (int) gameJump.getHeight();
+
+        gameJump.setHitbox(-w / 2, -h / 2, 64 ,64);
+        gameShoot.setHitbox(-w / 2, -h / 2, 64 ,64);
 
         //Set the correct texture region (multiply by the width and height of the button textures)
         gameShoot.setTextureRegion(1 * 32,1 * 32);
         gameJump.setTextureRegion(0, 1 * 32);
 
         //Position the jump button in the lower left
-        float lowerLeft = 0 + gameJump.getWidth();
+        float lowerLeft = w / 2;
         gameJump.setX(lowerLeft);
 
         //Position the shoot button in the lower right of the corner
-        float lowerRight = gameShoot.getWorldWidth() - gameShoot.getWidth()*2;
+        float lowerRight = gameShoot.getWorldWidth() - w * 1.5f;
         gameShoot.setX(lowerRight);
+
+        float buttonY = h / 2;
+
+        gameJump.setY(buttonY);
+        gameShoot.setY(buttonY);
     }
 
     public Game.GameStates getNextState() {

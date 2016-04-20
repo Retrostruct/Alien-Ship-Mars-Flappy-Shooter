@@ -16,6 +16,13 @@ public class AudioHandler {
     private Sound explosion;
 
     private boolean playIntro;
+    private float volume = 1.0f;
+
+    public void setVolume(float value) {
+        volume = value;
+        intro.setVolume(volume);
+        main.setVolume(volume);
+    }
 
     public AudioHandler(){
 
@@ -55,13 +62,13 @@ public class AudioHandler {
     //Play a specified sound
     public void playSound(String sound){
         if(sound == "shoot"){
-            shoot.play();
+            shoot.play(volume);
         }
         else if(sound == "jump"){
-            jump.play();
+            jump.play(volume);
         }
         else if(sound == "explosion"){
-            explosion.play();
+            explosion.play(volume);
         }
     }
 
