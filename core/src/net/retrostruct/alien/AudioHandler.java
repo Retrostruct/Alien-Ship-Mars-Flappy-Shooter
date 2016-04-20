@@ -1,12 +1,8 @@
 package net.retrostruct.alien;
 
-import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.AudioDevice;
-import com.badlogic.gdx.audio.AudioRecorder;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.files.FileHandle;
 
 /**
  * Created by kasper.esbjornsson on 2016-04-19.
@@ -25,7 +21,7 @@ public class AudioHandler {
 
         //Load music files
         intro = Gdx.audio.newMusic(Gdx.files.internal("sound/infiniteHamstersIntro.wav"));
-        main = Gdx.audio.newMusic(Gdx.files.internal("sound/infiniteHamstersmain.wav"));
+        main = Gdx.audio.newMusic(Gdx.files.internal("sound/infiniteHamstersMain.wav"));
 
         //Load sounds
         jump = Gdx.audio.newSound(Gdx.files.internal("sound/jump.wav"));
@@ -50,6 +46,8 @@ public class AudioHandler {
                 playIntro = false;
                 main.play();
                 main.setLooping(true);
+
+                Game.LOG("AUDIO", "Playing main loop");
             }
         });
     }

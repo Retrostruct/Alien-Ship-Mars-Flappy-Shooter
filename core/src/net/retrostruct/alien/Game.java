@@ -63,7 +63,7 @@ public class Game extends ApplicationAdapter {
 
         SCALE = height / 32.0f / 8.0f;
 
-        Gdx.app.log("GAME", "Scale: " + SCALE);
+        LOG("GAME", "Scale: " + SCALE);
         // 1.875 on desktop
         // 4.21875 on mobile
 
@@ -133,8 +133,10 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.update(delta, player);
 
-                    if(entity instanceof EnemyShip){ //Check if entity is enemy ship (no unnecesary bullet iterating)
-                        //Check collision for all bullets against all enemy ships
+                    //Check if entity is enemy ship or hamster (no unnecesary bullet iterating)
+                    if(entity instanceof EnemyShip ||
+                            entity instanceof Hamster) {
+                        //Check collision for all bullets against all enemy ships and hamsters
                         for(Bullet bullet: bullets){
                             if(bullet.overlaps(entity)) {
                                 entity.kill();
@@ -156,7 +158,7 @@ public class Game extends ApplicationAdapter {
 
                 if(!player.isAlive()) {
                     reset();
-                    Gdx.app.log("GAME", "Player died!");
+                    LOG("GAME", "Player died!");
                 }
 
                 break;
@@ -181,7 +183,7 @@ public class Game extends ApplicationAdapter {
                 for(Entity entity: entities) {
                     entity.draw(spriteBatch);
                 }
-                for(Bullet bullet: bullets){
+                for (Bullet bullet: bullets){
                     bullet.draw(spriteBatch);
                 }
 
@@ -242,6 +244,11 @@ public class Game extends ApplicationAdapter {
         viewport.update(width, height); // Update viewport width new size
         Entity.setViewport(viewport); // Set viewport for entities
         player.resize(); // Re-calculate player position
+    }
+
+    public static void LOG(String tag, String message) {
+        if(RELEASE) return;
+        Gdx.app.log(tag, message);
     }
 
 }

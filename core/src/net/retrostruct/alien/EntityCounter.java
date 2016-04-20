@@ -1,6 +1,5 @@
 package net.retrostruct.alien;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Random;
@@ -29,13 +28,13 @@ public class EntityCounter {
     public void addEntity(Entity e, Array<Entity> entities) {
         entities.add(e);
         shift(e, 1);
-        Gdx.app.log("ENTITY", e.toString() + " added!");
+        Game.LOG("ENTITY", e.toString() + " added!");
     }
 
     public void removeEntity(Entity e, Array<Entity> entities) {
         entities.removeValue(e, true);
         shift(e, -1);
-        Gdx.app.log("ENTITY", e.toString() + " removed!");
+        Game.LOG("ENTITY", e.toString() + " removed!");
     }
 
     private void shift(Entity e, int n) {
