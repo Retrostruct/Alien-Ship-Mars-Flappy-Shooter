@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean RELEASE = false;
+    public static boolean RELEASE = true;
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -96,6 +96,7 @@ public class Game extends ApplicationAdapter {
     private void reset() {
         player.reset(); // Reset player
         entities.clear(); // Clear entity array
+        bullets.clear(); // Clear bullet array
 
         entityCounter.addEnemies(time, random, entities);
 
