@@ -47,7 +47,7 @@ public class AudioHandler {
                 main.play();
                 main.setLooping(true);
 
-                Game.LOG("AUDIO", "Playing main loop");
+                Game.LOG("AUDIO", "Infinite main loop");
             }
         });
     }

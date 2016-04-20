@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean RELEASE = true;
+    public static boolean RELEASE = false;
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -34,11 +34,13 @@ public class Game extends ApplicationAdapter {
     // The game's states
     private enum GameStates {
         Menu, // Restart screen (press space/tap to play)
-        Playing, // Play the game
+        Infinite, // Infinite mode
+        Story, // Story mode
+        Hamster, // Hamster mode
         Credits, // Roll credits
     }
 
-    private GameStates currentGameState = GameStates.Playing; // Set current state to menu
+    private GameStates currentGameState = GameStates.Infinite; // Set current state to menu
 
     private Color clearColor = Color.BLACK; // Screen clear color
 
@@ -111,7 +113,7 @@ public class Game extends ApplicationAdapter {
             case Menu:
 
                 break;
-            case Playing:
+            case Infinite:
 
                 time += delta;
                 if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
@@ -175,7 +177,7 @@ public class Game extends ApplicationAdapter {
             case Menu:
 
                 break;
-            case Playing:
+            case Infinite:
 
                 // background.draw(spriteBatch); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player

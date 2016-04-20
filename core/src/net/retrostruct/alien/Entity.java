@@ -15,13 +15,13 @@ public class Entity {
 
     private static Texture spriteSheet; // Entity sprite sheet
     private static Viewport viewport; // Game's viewport
-    private static float gameScale; // Game's gameScale
+    protected static float gameScale; // Game's gameScale
 
-    private float localScale = 1.0f; // Entity's local scale
+    protected float localScale = 1.0f; // Entity's local scale
 
     private Vector2 position, velocity, origin; // Position, velocity and origin
-    private int width, height; // Size of entity
-    private float rotation = 0.0f; // Rotation (initially 0)
+    protected int width, height; // Size of entity
+    protected float rotation = 0.0f; // Rotation (initially 0)
     private TextureRegion textureRegion; // Texture region of entity
     private Rectangle hitbox = null;
 
@@ -40,6 +40,9 @@ public class Entity {
 
     // Load sprite sheet
     public static void loadSpriteSheet(String path) { spriteSheet = new Texture(path); }
+
+    // Get sprite sheet
+    public static Texture getSpriteSheet() { return spriteSheet; }
 
     // Local scale
     public float getLocalScale() { return localScale; }
