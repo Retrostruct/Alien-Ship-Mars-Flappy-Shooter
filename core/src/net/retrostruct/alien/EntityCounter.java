@@ -22,7 +22,7 @@ public class EntityCounter {
     }
 
     int getNewEnemyCount(float t) {
-        return (int) (t / 400.0f) + 1;
+        return (int) (t/10)+1;
     }
 
     public void addEntity(Entity e, Array<Entity> entities) {

@@ -5,7 +5,7 @@ package net.retrostruct.alien;
  */
 public class Bullet extends Entity {
 
-    private float speed = 500.0f;
+    private float speed = 580.0f;
 
     public Bullet(float x, float y, float rotation) {
         super(x, y);
@@ -15,7 +15,7 @@ public class Bullet extends Entity {
         setHeight(4);
 
         // Bigger hitbox to make shooting enemies easier
-        setHitbox(-12, -4, 24, 8);
+        setHitbox(0, -10, 12, 14);
 
         // Set texture region
         setTextureRegion(138, 14);

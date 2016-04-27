@@ -18,8 +18,8 @@ public class Player extends Entity {
     public static int getJumpKey() { return jumpKey; }
     public static int getShootKey() { return shootKey; }
 
-    private float gravity = 25.0f;
-    private float jumpHeight = 500.0f;
+    private float gravity = 18.0f;
+    private float jumpHeight = 450.0f;
 
     private int score;
 
@@ -55,7 +55,7 @@ public class Player extends Entity {
         addVelocity(0.0f, -gravity);
 
         // Set rotation
-        setRotation(-getVelocity().y * 0.01f - (float) Math.toRadians(30.0));
+        setRotation(-getVelocity().y * 0.02f - (float) Math.toRadians(35.0));
 
         if(getY() > getWorldHeight() - getHeight()) setVelocityY(0.0f);
         setY(MathUtils.clamp(getY(), -getHeight(), getWorldHeight() - getHeight()));

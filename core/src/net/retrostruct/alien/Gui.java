@@ -68,42 +68,47 @@ public class Gui {
     public void menuUpdate(){
 
     }
-    Rectangle input = new Rectangle(0, 0, 0, 0);
+    boolean wasTouched[] = new boolean[10];
 
+    Rectangle getInputRectangle(int i, Camera camera) {
+        Rectangle r = new Rectangle();
+        Vector3 pos = new Vector3();
+        pos.x = Gdx.input.getX(i);
+        pos.y = Gdx.input.getY(i);
+        camera.unproject(pos);
+        r.x = pos.x;
+        r.y = pos.y;
 
-    float jumpCoolDown = 0.1f;
-    float jumpTimer = 0;
-    float shootCoolDown = 0.1f;
-    float shootTimer = 0;
+        return r;
+    }
+
+    float shootTimer = 0.0f;
 
     //Updates the game gui (should only be run if the game state is equal to "playing"
     public void gameUpdate(Camera camera, float delta){
 
         //Set the buttons to be not pressed by standard
-        shootPressed = false;
         jumpPressed = false;
+        shootPressed = false;
 
         shootTimer += delta;
-        jumpTimer += delta;
 
         if(Game.MOBILE) {
             for(int i = 0; i < 10; i++) {
-                //Create a rectangle for the input from the player
-                Vector3 mousePosition = new Vector3(Gdx.input.getX(i), Gdx.input.getY(i), 0);
-                camera.unproject(mousePosition);
-                input = new Rectangle(mousePosition.x, mousePosition.y, 1, 1);
 
+                if(Gdx.input.isTouched(i) && !wasTouched[i]) {
 
-                //Check if shoot button is pressed
-                if (input.overlaps(gameShoot.getHitbox()) && Gdx.input.isTouched(i) && shootTimer > shootCoolDown) {
-                    shootPressed = true;
-                    shootTimer = 0;
+                    if(getInputRectangle(i, camera).overlaps(gameJump.getHitbox())) {
+                        jumpPressed = true;
+                        wasTouched[i] = true;
+                    }
+                } else if(!Gdx.input.isTouched(i)){
+                    wasTouched[i] = false;
                 }
 
-                //Check if jump button is pressed
-                if (input.overlaps(gameJump.getHitbox()) && Gdx.input.isTouched(i) && jumpTimer > jumpCoolDown) {
-                    jumpPressed = true;
-                    jumpTimer = 0;
+                if(Gdx.input.isTouched(i) && getInputRectangle(i, camera).overlaps(gameShoot.getHitbox()) && shootTimer > 0.5f) {
+                    shootTimer = 0;
+                    shootPressed = true;
                 }
             }
 

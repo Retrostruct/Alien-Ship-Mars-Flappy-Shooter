@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean RELEASE = false; // TODO: Set to true on release
+    public static boolean RELEASE = true; // TODO: Set to true on release
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -54,7 +54,7 @@ public class Game extends ApplicationAdapter {
     //Bullet array to hold all bullets (allows for iterating through entities to check collision)
     private Array<Bullet> bullets = new Array();
 
-    Timer enemyTimer = new Timer(1.0f);
+    Timer enemyTimer = new Timer(10.0f);
 
     float time = 0.0f;
 	
@@ -251,7 +251,7 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height); // Update viewport width new size
+        viewport.update(width, height); // Update viewport wiTechnical detailsdth new size
         Entity.setViewport(viewport); // Set viewport for entities
         player.resize(); // Re-calculate player position
     }
