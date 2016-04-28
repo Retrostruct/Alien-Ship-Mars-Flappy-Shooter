@@ -55,6 +55,7 @@ public class Game extends ApplicationAdapter {
     private Array<Bullet> bullets = new Array();
 
     Timer enemyTimer = new Timer(10.0f);
+    Timer hamsterTimer = new Timer(10.0f);
 
     float time = 0.0f;
 	
@@ -104,7 +105,7 @@ public class Game extends ApplicationAdapter {
 
         time = 0.0f;
 
-        for(int i = 0; i < 10; i++) entityCounter.addEntity(new Hamster(random), entities);
+ //       for(int i = 0; i < 10; i++) entityCounter.addEntity(new Hamster(random), entities);
     }
 
     private void update(float delta) {
@@ -120,6 +121,7 @@ public class Game extends ApplicationAdapter {
 
                 time += delta;
                 if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
+                if(hamsterTimer.tick(delta)) entityCounter.addEntity(new Hamster(random), entities);
 
                 // background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player

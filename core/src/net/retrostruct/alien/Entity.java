@@ -78,7 +78,8 @@ public class Entity {
     }
 
     // Origin
-    public Vector2 getOrigin() { return new Vector2(0, 0); }
+    public Vector2 getOrigin() { return origin; }
+    public void setOrigin(float x, float y){ origin = new Vector2(x,y); }
 
     // Rotation
     public float getRotation() { return rotation; }
