@@ -20,9 +20,9 @@ public class EnemyShip extends Entity {
         setWidth(32);
         setHeight(32);
 
-        setHitbox(0, 32 / 4, 32, 32 / 2);
+        setHitbox(32 / 4, 32 / 4, 32 / 2, 32 / 2);
 
-        setOrigin(width/2, height/2);
+        setOrigin(0, height/2);
 
         // Randomize position
         setX(getWorldWidth() + getWorldWidth() * random.nextFloat());
@@ -48,7 +48,7 @@ public class EnemyShip extends Entity {
         // Set the y position as a sinus function of the x position
         setY(MathUtils.sin(getX() * frequency) * amplitude + yOffset);
 
-        float newRotation = (MathUtils.sin(getX() * frequency) * amplitude) / MathUtils.PI / 2;
+        float newRotation = (MathUtils.cos(getX() * frequency) * amplitude) / MathUtils.PI / 2;
 
         setRotation(newRotation);
 

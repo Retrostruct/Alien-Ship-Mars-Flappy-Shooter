@@ -65,14 +65,16 @@ public class Player extends Entity {
 
     public void resize() {
         // Center player when window is resized
-        setX((getWorldWidth() - getWidth()) / 2.0f);
+        //setX((getWorldWidth() - getWidth()) / 2.0f);
+        setX(getWidth()*3);
     }
 
     @Override
     public void reset() {
         // Center player to screen
-        setX((getWorldWidth() - getWidth()) / 2.0f);
+        //setX((getWorldWidth() - getWidth()*2) / 2.0f);
         setY((getWorldHeight() - getHeight()) / 2.0f);
+        setX(getWidth()*3);
 
         // Reset velocity
         setVelocity(0.0f, 0.0f);

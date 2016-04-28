@@ -51,6 +51,6 @@ public class Hamster extends Entity {
     }
 
     private void wiggle(){
-        setRotation(MathUtils.cos(getX() * (wiggleIntensity+wiggleIntensityModifier)) * wiggleAmplitude);
+        setRotation((MathUtils.cos(getX() * (wiggleIntensity+wiggleIntensityModifier)) * wiggleAmplitude) / gameScale);
     }
 }
