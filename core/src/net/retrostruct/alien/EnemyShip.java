@@ -52,6 +52,10 @@ public class EnemyShip extends Entity {
         // Set the y position as a sinus function of the x position
         setY(MathUtils.sin(getX() * frequency) * amplitude + yOffset);
 
+        float newRotation = (MathUtils.sin(getX() * frequency) * amplitude) / MathUtils.PI / 2;
+
+        setRotation(newRotation);
+
         if(getX() < 0 - getWidth()) kill();
     }
 }

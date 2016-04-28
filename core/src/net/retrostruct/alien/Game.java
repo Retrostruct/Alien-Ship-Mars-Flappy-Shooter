@@ -130,7 +130,7 @@ public class Game extends ApplicationAdapter {
                     player.jump();
                     audioHandler.playSound("jump");
                 }
-                
+
                 if(gui.shootPressed) {
                     player.shoot(bullets);
                     audioHandler.playSound("shoot");

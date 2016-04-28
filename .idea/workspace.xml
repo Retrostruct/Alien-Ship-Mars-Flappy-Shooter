@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be90c349-c838-4b1f-851e-6ac390079821" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Alien-Ship-Mars-Flappy-Shooter.iws" />
@@ -28,11 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.90153176">
-              <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="123" column="62" selection-start-line="123" selection-start-column="62" selection-end-line="123" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnemyShip.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7549234">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -2435,13 +2445,13 @@
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Explosion.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/AudioHandler.java" />
-        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/EntityCounter.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java" />
+        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" />
       </list>
     </option>
   </component>
@@ -3069,14 +3079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19736843">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/EntityCounter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7221007">
@@ -3130,8 +3132,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90153176">
-          <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="62" selection-start-line="123" selection-start-column="62" selection-end-line="123" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7549234">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding />
         </state>
       </provider>
