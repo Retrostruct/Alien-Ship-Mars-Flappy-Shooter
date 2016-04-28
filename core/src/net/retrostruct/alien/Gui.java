@@ -115,8 +115,10 @@ public class Gui {
         } else {
             if(Gdx.input.isKeyJustPressed(Player.getJumpKey()))
                 jumpPressed = true;
-            if(Gdx.input.isKeyJustPressed(Player.getShootKey()))
+            if(Gdx.input.isKeyPressed(Player.getShootKey()) && shootTimer > 0.5f) {
+                shootTimer = 0;
                 shootPressed = true;
+            }
         }
 
 

@@ -90,7 +90,7 @@ public class Game extends ApplicationAdapter {
         audioHandler = new AudioHandler();
         audioHandler.playMusic();
         // Create scrolling background
-        // background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
+        background = new ScrollingBackground("sheets/backgrounds.png", SCALE);
 
         reset(); // Reset the game
 	}
@@ -121,7 +121,7 @@ public class Game extends ApplicationAdapter {
                 time += delta;
                 if(enemyTimer.tick(delta)) entityCounter.addEnemies(time, random, entities);
 
-                // background.update(delta); // Update scrolling background
+                background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
 
                 gui.gameUpdate(camera, delta);
@@ -186,7 +186,7 @@ public class Game extends ApplicationAdapter {
                 break;
             case Infinite:
 
-                // background.draw(spriteBatch); // Draw scrolling background
+                background.draw(spriteBatch, player); // Draw scrolling background
                 player.draw(spriteBatch); // Draw player
 
                 // Draw entities
