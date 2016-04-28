@@ -20,7 +20,7 @@ public class EnemyShip extends Entity {
         setWidth(32);
         setHeight(32);
 
-        setHitbox(32 / 4, 32 / 4, 32 / 2, 32 / 2);
+        setHitbox(0, 32 / 4, 32, 32 / 2);
 
         setOrigin(width/2, height/2);
 
