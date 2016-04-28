@@ -120,9 +120,6 @@ public class Gui {
                 shootPressed = true;
             }
         }
-
-
-
     }
 
     public boolean jumpButtonPressed(){
@@ -135,11 +132,13 @@ public class Gui {
 
     //Draws the game gui. Should only run if game state is equal to "playing"
     public void gameDraw(SpriteBatch spriteBatch){
+        if(!Game.MOBILE) return;
         gameShoot.draw(spriteBatch);
         gameJump.draw(spriteBatch);
     }
 
     public void drawButtonHitboxes(ShapeRenderer shapeRenderer) {
+        if(!Game.MOBILE) return;
         gameShoot.drawHitBox(shapeRenderer);
         gameJump.drawHitBox(shapeRenderer);
     }

@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean RELEASE = true; // TODO: Set to true on release
+    public static boolean RELEASE = false; // TODO: Set to true on release
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -27,9 +27,9 @@ public class Game extends ApplicationAdapter {
     private OrthographicCamera camera; // Camera to translate coordinates
     private Viewport viewport; // Game's viewport
     private Random random;
-    private EntityCounter entityCounter;
+    private EntityCounter entityCounter; // Counts entities
 
-    private AudioHandler audioHandler;
+    private AudioHandler audioHandler; // Handles all audio effect and music
 
     // The game's states
     public static enum GameStates {
@@ -130,6 +130,7 @@ public class Game extends ApplicationAdapter {
                     player.jump();
                     audioHandler.playSound("jump");
                 }
+                
                 if(gui.shootPressed) {
                     player.shoot(bullets);
                     audioHandler.playSound("shoot");
@@ -213,7 +214,6 @@ public class Game extends ApplicationAdapter {
             if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
                 Gdx.app.exit();
         }
-
 
         camera.update();
         update(Gdx.graphics.getDeltaTime() * SCALE * 0.75f); // Update
