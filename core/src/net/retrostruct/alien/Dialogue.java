@@ -44,8 +44,6 @@ public class Dialogue {
 
         interval = strings[stringNumber].length() * 0.1f;//Sets the time for how long the set of text will be shown on the screen before the timer resets
 
-
-        
         
         //timer
         if(stringNumber < strings.length){

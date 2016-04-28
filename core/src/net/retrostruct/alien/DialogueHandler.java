@@ -29,7 +29,5 @@ public class DialogueHandler {
 
         if(choice.activated && !nextDialogue[choice.selected].done)
             nextDialogue[choice.selected].Render(spriteBatch, font);
-        
-        
     }
 }
