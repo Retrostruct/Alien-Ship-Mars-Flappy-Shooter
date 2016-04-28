@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be90c349-c838-4b1f-851e-6ac390079821" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java" afterPath="$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Alien-Ship-Mars-Flappy-Shooter.iws" />
@@ -48,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36105034">
-              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
               <folding>
                 <element signature="e#1018#1019#0" expanded="true" />
                 <element signature="e#1068#1069#0" expanded="true" />
@@ -71,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScrollingBackground.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ScrollingBackground.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.6717724">
+              <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
               <folding>
                 <element signature="e#1081#1082#0" expanded="true" />
                 <element signature="e#1143#1144#0" expanded="true" />
@@ -2469,12 +2468,12 @@
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/AudioHandler.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/EntityCounter.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Player.java" />
-        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Bullet.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/EnemyShip.java" />
         <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java" />
+        <option value="$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java" />
       </list>
     </option>
   </component>
@@ -3114,17 +3113,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-          <folding>
-            <element signature="e#1081#1082#0" expanded="true" />
-            <element signature="e#1143#1144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3142,14 +3130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -3172,11 +3152,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36105034">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
           <folding>
             <element signature="e#1018#1019#0" expanded="true" />
             <element signature="e#1068#1069#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/net/retrostruct/alien/ScrollingBackground.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6717724">
+          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+          <folding>
+            <element signature="e#1081#1082#0" expanded="true" />
+            <element signature="e#1143#1144#0" expanded="true" />
           </folding>
         </state>
       </provider>

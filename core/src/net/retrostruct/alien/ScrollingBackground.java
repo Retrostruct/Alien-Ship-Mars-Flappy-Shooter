@@ -39,8 +39,14 @@ public class ScrollingBackground {
 
         // Draw scrolling backgrounds
         for(int i = 0; i < 2; i++) {
-            spriteBatch.draw(back, player.getWorldWidth() * i + (offset * 0.7f) % player.getWorldWidth(), y * 0.7f, 0, 0, width, height, scale, scale, 0.0f);
-            spriteBatch.draw(front, player.getWorldWidth() * i + offset % player.getWorldWidth(), y, 0, 0, width, height, scale, scale, 0.0f);
+            for(int j = 0; j < 3; j++) {
+                spriteBatch.draw(back, player.getWorldWidth() * i + (offset * 0.7f) % player.getWorldWidth(),
+                        player.getWorldHeight() * (j - 1) + y * 0.7f,
+                        0, 0, width, height, scale, scale, 0.0f);
+                spriteBatch.draw(front, player.getWorldWidth() * i + offset % player.getWorldWidth(),
+                        player.getWorldHeight() * (j - 1) + y,
+                        0, 0, width, height, scale, scale, 0.0f);
+            }
         }
     }
 }
