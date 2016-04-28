@@ -1,5 +1,7 @@
 package net.retrostruct.alien;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import java.util.Random;
 
 /**
@@ -7,7 +9,10 @@ import java.util.Random;
  */
 public class Hamster extends Entity {
 
-    private float speed = 100.0f;
+    private float speed = 120.0f;
+    private float wiggleIntensity = 0.05f;
+    private float wiggleIntensityModifier;
+    private float wiggleAmplitude = 50;
 
     public Hamster(Random random) {
         super(0.0f, 0.0f);
@@ -22,7 +27,13 @@ public class Hamster extends Entity {
         // Set texture region
         setTextureRegion(3 * 32, 0);
 
-        setVelocityX(-speed);
+        wiggleIntensityModifier = random.nextFloat() * 0.04f;
+
+        float speedModifier = random.nextFloat() * 30;
+
+        setOrigin(width/2, height/2);
+
+        setVelocityX(-(speed+speedModifier));
     }
 
     @Override
@@ -33,5 +44,13 @@ public class Hamster extends Entity {
             player.addScore();
             kill();
         }
+
+        wiggle();
+
+        if(getX() < 0 - getWidth()) kill();
+    }
+
+    private void wiggle(){
+        setRotation(MathUtils.cos(getX() * (wiggleIntensity+wiggleIntensityModifier)) * wiggleAmplitude);
     }
 }
