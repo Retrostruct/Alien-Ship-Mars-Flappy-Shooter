@@ -32,7 +32,8 @@ public class Entity {
     public Rectangle getHitbox() {
         if(hitbox == null) return getRectangle();
 
-        return new Rectangle(getX() + hitbox.x, getY() + hitbox.y,
+        return new Rectangle(getX() + hitbox.x,
+                getY() + hitbox.y,
                 hitbox.width * gameScale * localScale, hitbox.height * gameScale * localScale);
     }
 
@@ -108,7 +109,10 @@ public class Entity {
     public void revive() { alive = true; }
 
     public Rectangle getRectangle() {
-        return new Rectangle(getX(), getY(), getWidth(), getHeight());
+        return new Rectangle(
+                getX() - getOrigin().x,
+                getY() - getOrigin().y,
+                getWidth(), getHeight());
     }
 
     public static Rectangle getWorldRectangle() {

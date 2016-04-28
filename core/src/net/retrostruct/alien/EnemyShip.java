@@ -1,7 +1,6 @@
 package net.retrostruct.alien;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
 
@@ -14,19 +13,16 @@ public class EnemyShip extends Entity {
     private float amplitude, frequency;
     private float yOffset;
 
-    @Override
-    public Rectangle getRectangle() {
-        return new Rectangle(getX() + getWidth() / 4,
-                    getY() + getHeight() / 4,
-                    getWidth() / 2, getHeight() / 2);
-    }
-
     public EnemyShip(Random random) {
         super(0.0f, 0.0f);
 
         // Set size
         setWidth(32);
         setHeight(32);
+
+        setHitbox(32 / 4, 32 / 4, 32 / 2, 32 / 2);
+
+        setOrigin(width/2, height/2);
 
         // Randomize position
         setX(getWorldWidth() + getWorldWidth() * random.nextFloat());
