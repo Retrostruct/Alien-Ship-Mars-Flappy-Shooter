@@ -55,7 +55,7 @@ public class Player extends Entity {
         addVelocity(0.0f, -gravity);
 
         // Set rotation
-        setRotation(-getVelocity().y * 0.02f - (float) Math.toRadians(35.0));
+        setRotation(-getVelocity().y * 0.021f - (float) Math.toRadians(35.0));
 
         if(getY() > getWorldHeight() - getHeight()) setVelocityY(0.0f);
         setY(MathUtils.clamp(getY(), -getHeight(), getWorldHeight() - getHeight()));
