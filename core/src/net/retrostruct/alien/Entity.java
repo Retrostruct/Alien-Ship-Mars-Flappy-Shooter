@@ -143,6 +143,10 @@ public class Entity {
         position.y += velocity.y * delta;
     }
 
+    public void update(float delta, Player player, AudioHandler audioHandler){
+        update(delta, player);
+    }
+
     public void draw(SpriteBatch spriteBatch) {
         // Draw entity
         spriteBatch.draw(getTextureRegion(), getX(), getY(),

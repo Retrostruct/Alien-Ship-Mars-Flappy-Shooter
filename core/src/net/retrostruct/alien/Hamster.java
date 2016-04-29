@@ -37,11 +37,12 @@ public class Hamster extends Entity {
     }
 
     @Override
-    public void update(float delta, Player player) {
+    public void update(float delta, Player player, AudioHandler audioHandler) {
         super.update(delta, player);
 
         if(overlaps(player)) {
             player.addScore();
+            audioHandler.playSound("score");
             kill();
         }
 
