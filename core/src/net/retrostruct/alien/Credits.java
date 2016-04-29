@@ -5,12 +5,12 @@ package net.retrostruct.alien;
  */
 public class Credits {
 
-    // TODO: Add credits and formatting standards
+    // TODO: (Maybe) Add credits and formatting standards
     public static String[] lines = new String[] {
             "Credits", // Example, /b for bold text etc
             "Simon Igefjord",
             "Kasper Esbjörnsson",
             "Jonathan Göransson",
-            "Sebastian Fransson"
+            "Sebastian Fransson",
     };
 }
