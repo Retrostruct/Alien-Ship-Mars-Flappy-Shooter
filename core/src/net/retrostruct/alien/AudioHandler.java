@@ -17,7 +17,7 @@ public class AudioHandler {
     private Sound explosion;
 
     private boolean playIntro;
-    private float volume = 1.0f;
+    private float volume = 0.5f;
 
     public void setVolume(float value) {
         volume = value;
