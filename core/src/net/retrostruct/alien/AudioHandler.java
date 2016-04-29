@@ -13,6 +13,7 @@ public class AudioHandler {
     private Music main;
     private Sound jump;
     private Sound shoot;
+    private Sound score;
     private Sound explosion;
 
     private boolean playIntro;
@@ -34,6 +35,7 @@ public class AudioHandler {
         jump = Gdx.audio.newSound(Gdx.files.internal("sound/jump.wav"));
         shoot = Gdx.audio.newSound(Gdx.files.internal("sound/laser.wav"));
         explosion = Gdx.audio.newSound(Gdx.files.internal("sound/explosion.wav"));
+        score = Gdx.audio.newSound(Gdx.files.internal("sound/point.wav"));
 
         playIntro = true;
     }
@@ -69,6 +71,9 @@ public class AudioHandler {
         }
         else if(sound == "explosion"){
             explosion.play(volume);
+        }
+        else if(sound == "score"){
+            score.play(volume);
         }
     }
 

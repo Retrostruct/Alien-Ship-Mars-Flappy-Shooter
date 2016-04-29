@@ -140,7 +140,7 @@ public class Game extends ApplicationAdapter {
 
                 // Update entities
                 for(Entity entity: entities) {
-                    entity.update(delta, player);
+                    entity.update(delta, player, audioHandler);
 
                     //Check if entity is enemy ship or hamster (no unnecesary bullet iterating)
                     if(entity instanceof EnemyShip ||
