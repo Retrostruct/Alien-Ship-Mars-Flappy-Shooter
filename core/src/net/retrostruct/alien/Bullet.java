@@ -24,7 +24,7 @@ public class Bullet extends Entity {
         setVelocity((float) Math.cos(rotation) * speed, (float) Math.sin(rotation) * speed);
 
         // Set rotation
-        setRotation(rotation);
+        setRotation((float) Math.toDegrees(rotation));
     }
 
     @Override
