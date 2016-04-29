@@ -41,17 +41,18 @@ public class Hamster extends Entity {
         super.update(delta, player);
 
         if(overlaps(player)) {
-            player.addScore();
-            audioHandler.playSound("score");
-            kill();
+            player.addScore(5); //Add 5 points on collect
+            audioHandler.playSound("score"); //Play score sound
+            kill(); //Remove the hamster
         }
 
-        wiggle();
+        wiggle(); //Wiggle the hamster based on advanced maths
 
         if(getX() < 0 - getWidth()) kill();
     }
 
     private void wiggle(){
+        //Really advanced hamstermaths to wiggle the hamster
         setRotation((MathUtils.cos(getX() * (wiggleIntensity+wiggleIntensityModifier)) * wiggleAmplitude) / gameScale);
     }
 }

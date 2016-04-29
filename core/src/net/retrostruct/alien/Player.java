@@ -27,6 +27,8 @@ public class Player extends Entity {
     public void addScore() { score++; }
     public void addScore(int i) { score += i; }
 
+    public int getScore(){return score;}
+
     public Rectangle getRectangle() {
         return new Rectangle(getX() + getWidth() / 4,
                 getY() + getHeight() / 4,
@@ -50,6 +52,10 @@ public class Player extends Entity {
 
     public void update(float delta, boolean mobile, Array<Entity> entities) {
         super.update(delta, this);
+
+        //Ensure that the score never falls under 0
+        if(score < 0)
+            score = 0;
 
         // Add gravity to velocity
         addVelocity(0.0f, -gravity);

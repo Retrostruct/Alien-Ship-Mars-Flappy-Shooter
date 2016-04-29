@@ -40,7 +40,7 @@ public class Game extends ApplicationAdapter {
         Credits, // Roll credits
     }
 
-    private GameStates currentGameState = GameStates.Infinite; // Set current state to menu
+    private GameStates currentGameState = GameStates.Menu; // Set current state to menu
 
     private Color clearColor = Color.BLACK; // Screen clear color
 
@@ -100,7 +100,7 @@ public class Game extends ApplicationAdapter {
         player.reset(); // Reset player
         entities.clear(); // Clear entity array
         bullets.clear(); // Clear bullet array
-
+        currentGameState = GameStates.Menu;
         entityCounter.addEnemies(time, random, entities);
 
         time = 0.0f;
@@ -114,7 +114,9 @@ public class Game extends ApplicationAdapter {
             case Menu:
 
                 // Set game state to next game state
-                currentGameState = gui.getNextState();
+                currentGameState = gui.getNextState(currentGameState, camera);
+
+                background.update(delta);
 
                 break;
             case Infinite:
@@ -126,7 +128,7 @@ public class Game extends ApplicationAdapter {
                 background.update(delta); // Update scrolling background
                 player.update(delta, MOBILE, entities); // Update player
 
-                gui.gameUpdate(camera, delta);
+                gui.gameUpdate(camera, delta, player);
 
                 if(gui.jumpPressed) {
                     player.jump();
@@ -148,6 +150,17 @@ public class Game extends ApplicationAdapter {
                         //Check collision for all bullets against all enemy ships and hamsters
                         for(Bullet bullet: bullets){
                             if(bullet.overlaps(entity)) {
+
+                                /*
+                                Shooting enemy ships provide 1 point
+                                Shooting hamsters removes 5 points
+                                Collecting hamsters provides 5 points (this code can be found in the Hamster class)
+                                 */
+                                if(entity instanceof EnemyShip)
+                                    player.addScore();
+                                else if(entity instanceof Hamster)
+                                    player.addScore(-5);
+
                                 entity.kill();
                                 audioHandler.playSound("explosion");
                             }
@@ -185,7 +198,8 @@ public class Game extends ApplicationAdapter {
         // Switch the current game state
         switch(currentGameState) {
             case Menu:
-
+                gui.menuDraw(spriteBatch);
+                background.draw(spriteBatch, player);
                 break;
             case Infinite:
 
