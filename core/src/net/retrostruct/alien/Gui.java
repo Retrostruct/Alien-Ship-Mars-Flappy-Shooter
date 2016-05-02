@@ -1,6 +1,7 @@
 package net.retrostruct.alien;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -89,14 +90,15 @@ public class Gui {
 
         //Position the play button in the middle of the screen
         //Todo: Fix the hitbox for play button (not using the local scale?)
-        menuPlay.setOrigin(menuPlay.getRealWidth() / 2 , menuPlay.getRealHeight()/2);
-        menuPlay.setX(Entity.getWorldWidth() / 2);
-        menuPlay.setY(Entity.getWorldHeight() / 2);
+        menuPlay.setX((Entity.getWorldWidth() - menuPlay.getWidth()) / 2);
+        menuPlay.setY((Entity.getWorldHeight() - menuPlay.getHeight()) / 2);
     }
 
     public Game.GameStates getNextState(Game.GameStates current, OrthographicCamera camera) {
 
         if(current == Game.GameStates.Menu){
+
+            if(!Game.MOBILE) if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) current = Game.GameStates.Infinite;
             //Run menu update
 
             float rawX = Gdx.input.getX();
@@ -206,14 +208,10 @@ public class Gui {
 
         glyphLayout.setText(font, writtenHS);
 
-        float x = (Entity.getWorldWidth() / 2) - (glyphLayout.width / 2);
-        float y = menuPlay.getY() + glyphLayout.height * 4;
-        Vector3 rawTextPos = new Vector3(x,y,0);
+        float x = (Entity.getWorldWidth() - glyphLayout.width) / 2;
+        float y = (Entity.getWorldHeight() - glyphLayout.height) / 2 - menuPlay.height - glyphLayout.height;
 
-        Vector3 trueTextPos = camera.unproject(rawTextPos);
-
-
-        font.draw(spriteBatch, writtenHS, trueTextPos.x, trueTextPos.y);
+        font.draw(spriteBatch, writtenHS, x, y);
         menuPlay.draw(spriteBatch);
     }
 

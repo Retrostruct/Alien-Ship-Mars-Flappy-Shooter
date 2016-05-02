@@ -110,8 +110,8 @@ public class Entity {
 
     public Rectangle getRectangle() {
         return new Rectangle(
-                getX() - getOrigin().x,
-                getY() - getOrigin().y,
+                getX() - origin.x,
+                getY() - origin.y,
                 getWidth(), getHeight());
     }
 
