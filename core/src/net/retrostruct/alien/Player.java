@@ -50,7 +50,7 @@ public class Player extends Entity {
         setTextureRegion(0, 0);
     }
 
-    public void update(float delta, boolean mobile, Array<Entity> entities) {
+    public void update(float delta, boolean mobile, Array<Entity> entities, Gui gui) {
         super.update(delta, this);
 
         //Ensure that the score never falls under 0
@@ -65,6 +65,8 @@ public class Player extends Entity {
 
         if(getY() > getWorldHeight() - getHeight()) setVelocityY(0.0f);
         setY(MathUtils.clamp(getY(), -getHeight(), getWorldHeight() - getHeight()));
+
+        gui.setGameOverScore(score);
 
         if(isOnScreen() == false) kill();
     }

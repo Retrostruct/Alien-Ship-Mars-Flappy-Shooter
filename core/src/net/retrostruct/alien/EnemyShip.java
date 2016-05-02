@@ -45,6 +45,7 @@ public class EnemyShip extends Entity {
         // If enemy overlaps player, kill the player
         if(overlaps(player)) player.kill();
 
+
         // Set the y position as a sinus function of the x position
         setY(MathUtils.sin(getX() * frequency) * amplitude + yOffset);
 

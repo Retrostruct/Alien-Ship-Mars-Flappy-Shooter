@@ -4,12 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
  * Created by kasper.esbjornsson on 2016-04-18.
@@ -21,15 +22,26 @@ public class Gui {
     BitmapFont font;
     Vector3 fontPos;
     int playerScore;
+    int gameOverScore;
+    int highScore;
 
 
     //Bools for button input checks
     boolean shootPressed;
     boolean jumpPressed;
 
+    //Set the score to be shown on game over screen
+    public void setGameOverScore(int score){
+        gameOverScore = score;
+
+        if(gameOverScore > highScore)
+            highScore = gameOverScore;
+    }
+
     //Create a new Gui
     public Gui(){
 
+        highScore = 0;
         //Load font
         font = new BitmapFont(Gdx.files.internal("dialogue/crunchyFont.fnt"));
 
@@ -72,13 +84,14 @@ public class Gui {
 
         float buttonY = h / 2;
 
-        //Position the play button in the middle of the screen
-        menuPlay.setOrigin(menuPlay.getRealWidth() / 2 , menuPlay.getRealHeight()/2);
-        menuPlay.setX(menuPlay.getWorldWidth() / 2);
-        menuPlay.setY(menuPlay.getWorldHeight() / 2);
-
         gameJump.setY(buttonY);
         gameShoot.setY(buttonY);
+
+        //Position the play button in the middle of the screen
+        //Todo: Fix the hitbox for play button (not using the local scale?)
+        menuPlay.setOrigin(menuPlay.getRealWidth() / 2 , menuPlay.getRealHeight()/2);
+        menuPlay.setX(Entity.getWorldWidth() / 2);
+        menuPlay.setY(Entity.getWorldHeight() / 2);
     }
 
     public Game.GameStates getNextState(Game.GameStates current, OrthographicCamera camera) {
@@ -105,6 +118,11 @@ public class Gui {
     public void menuUpdate(){
 
     }
+
+    public void gameOverUpdate(){
+
+    }
+
     boolean wasTouched[] = new boolean[10];
 
     Rectangle getInputRectangle(int i, Camera camera) {
@@ -179,14 +197,29 @@ public class Gui {
         gameJump.draw(spriteBatch);
     }
 
-    public void menuDraw(SpriteBatch spriteBatch){
+    public void menuDraw(SpriteBatch spriteBatch, OrthographicCamera camera){
+        GlyphLayout glyphLayout = new GlyphLayout();
+        String writtenHS;
+        writtenHS = "Highest score this session: " + highScore;
+
+        glyphLayout.setText(font, writtenHS);
+
+        float x = (Entity.getWorldWidth() / 2) - (glyphLayout.width / 2);
+        float y = menuPlay.getY() + glyphLayout.height * 4;
+        Vector3 rawTextPos = new Vector3(x,y,0);
+
+        Vector3 trueTextPos = camera.unproject(rawTextPos);
+
+
+        font.draw(spriteBatch, writtenHS, trueTextPos.x, trueTextPos.y);
         menuPlay.draw(spriteBatch);
     }
 
     public void drawButtonHitboxes(ShapeRenderer shapeRenderer) {
-        if(!Game.MOBILE) return;
+        //if(!Game.MOBILE) return;
         gameShoot.drawHitBox(shapeRenderer);
         gameJump.drawHitBox(shapeRenderer);
+        menuPlay.drawHitBox(shapeRenderer);
     }
 
 }

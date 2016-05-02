@@ -17,7 +17,7 @@ import java.util.Random;
 public class Game extends ApplicationAdapter {
 
     public static boolean MOBILE;
-    public static boolean RELEASE = true; // TODO: Set to true on release
+    public static boolean RELEASE = false; // TODO: Set to true on release
 
     private final String TITLE = "Alien Ship Mars Flappy Shooter"; // Title of window
     private float SCALE; // Change the game's scale here
@@ -126,7 +126,7 @@ public class Game extends ApplicationAdapter {
                 if(hamsterTimer.tick(delta)) entityCounter.addEntity(new Hamster(random), entities);
 
                 background.update(delta); // Update scrolling background
-                player.update(delta, MOBILE, entities); // Update player
+                player.update(delta, MOBILE, entities, gui); // Update player
 
                 gui.gameUpdate(camera, delta, player);
 
@@ -142,7 +142,7 @@ public class Game extends ApplicationAdapter {
 
                 // Update entities
                 for(Entity entity: entities) {
-                    entity.update(delta, player, audioHandler);
+                        entity.update(delta, player, audioHandler);
 
                     //Check if entity is enemy ship or hamster (no unnecesary bullet iterating)
                     if(entity instanceof EnemyShip ||
@@ -198,7 +198,7 @@ public class Game extends ApplicationAdapter {
         // Switch the current game state
         switch(currentGameState) {
             case Menu:
-                gui.menuDraw(spriteBatch);
+                gui.menuDraw(spriteBatch, camera);
                 background.draw(spriteBatch, player);
                 break;
             case Infinite:
