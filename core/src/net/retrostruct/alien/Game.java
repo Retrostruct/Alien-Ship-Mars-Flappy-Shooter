@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -77,7 +78,7 @@ public class Game extends ApplicationAdapter {
         camera = new OrthographicCamera(); // Create orthographic camera
         camera.setToOrtho(false, width, height);
         camera.update();
-        viewport = new FillViewport(width, height, camera); // Create the fill viewport
+        viewport = new FitViewport(width, height, camera); // Create the fill viewport
         random = new Random(System.nanoTime()); // Create and seed the randomizer
         entityCounter = new EntityCounter(); // Counts entity types
 

@@ -21,7 +21,7 @@ public class Gui {
     //Button entities
     Entity gameShoot, gameJump, menuPlay;
     BitmapFont font;
-    Vector3 fontPos;
+    Vector2 fontPos;
     int playerScore;
     int gameOverScore;
     int highScore;
@@ -108,8 +108,6 @@ public class Gui {
 
             Vector3 unprojectedCoords = camera.unproject(rawCoords);
 
-            fontPos = camera.unproject(new Vector3(20,20,0));
-
             if(menuPlay.getHitbox().contains(unprojectedCoords.x, unprojectedCoords.y) && Gdx.input.justTouched())
                 current = Game.GameStates.Infinite;
 
@@ -193,6 +191,7 @@ public class Gui {
 
     //Draws the game gui. Should only run if game state is equal to "playing"
     public void gameDraw(SpriteBatch spriteBatch){
+        fontPos = new Vector2(20, Entity.getWorldHeight() - glyphLayout.height - 20);
         font.draw(spriteBatch, "Score: " + playerScore, fontPos.x, fontPos.y); //Draw the player's score
 
         //Only draw buttons for jumping and shooting if playing on a mobile device
@@ -201,8 +200,9 @@ public class Gui {
         gameJump.draw(spriteBatch);
     }
 
+    GlyphLayout glyphLayout = new GlyphLayout();
     public void menuDraw(SpriteBatch spriteBatch, OrthographicCamera camera){
-        GlyphLayout glyphLayout = new GlyphLayout();
+
         String writtenHS;
         writtenHS = "Highest score this session: " + highScore;
 
@@ -212,6 +212,7 @@ public class Gui {
         float y = (Entity.getWorldHeight() - glyphLayout.height) / 2 - menuPlay.height - glyphLayout.height;
 
         font.draw(spriteBatch, writtenHS, x, y);
+
         menuPlay.draw(spriteBatch);
     }
 
