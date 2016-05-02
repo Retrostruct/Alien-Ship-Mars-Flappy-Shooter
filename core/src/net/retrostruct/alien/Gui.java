@@ -110,6 +110,8 @@ public class Gui {
 
             if(menuPlay.getHitbox().contains(unprojectedCoords.x, unprojectedCoords.y) && Gdx.input.justTouched())
                 current = Game.GameStates.Infinite;
+
+            font.getData().setScale(0.5f*Entity.gameScale, 0.5f*Entity.gameScale);
         }
 
         return current;
